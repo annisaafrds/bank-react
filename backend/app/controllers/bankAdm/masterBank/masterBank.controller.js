@@ -64,7 +64,6 @@ exports.getOptionsMstBank = async (req, res) => {
 exports.getByNorek = async (req, res) => {
   
   const { value } = req.query;
-  console.log("value",value)
   try {
     var condition = null;
     //const { limit, offset } = getPagination(page - 1, size);
