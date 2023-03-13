@@ -4,6 +4,7 @@ const MstPlg = React.lazy(() => import('./views/tlpadm/mst_plg/mst_plg'))
 const Setor = React.lazy(() => import('./views/nasabah/setor-tunai/Setor'))
 const Cek = React.lazy(() => import('./views/nasabah/cek-saldo/cek-saldo'))
 const Trnasabah = React.lazy(() => import('./views/bnkadm/trksinasabah/trnasabah.js'))
+const Transfer = React.lazy(() => import('./views/nasabah/transfer/transfer.js'))
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -61,6 +62,7 @@ const routes = [
   { path: '/nsbh/cek', name: 'Cek Saldo', element: Cek },
   { path: '/tlpadm/mst_plg', name: 'mstPlg', element: MstPlg },
   { path: '/bnk_adm/trksi_nsbh', name: 'Transaksi Nasabah', element: Trnasabah },
+  { path: '/nsbh', name: 'Transfer', element: Transfer },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
