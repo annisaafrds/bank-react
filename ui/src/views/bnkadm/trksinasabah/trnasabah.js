@@ -13,15 +13,11 @@ class trnasabah extends Component {
     this.state = {
       trnasabah:
       {
-        ID_TRANSAKSI_NASABAH: '',
-        NOREK: '',
-        TANGGAL: '',
-        STATUS: '',
-        UANG: '',
-        STATUS_KET: '',
-        NOREK_DITUJU: '',
-        NO_TLP: '',
-
+        norek: '',
+        nama: '',
+        alamat: '',
+        noTelp: '',
+        saldo: '',
       },
       listTrnasabah: [],
       size: 10,
@@ -29,9 +25,9 @@ class trnasabah extends Component {
       field: '',
       value: '',
       totalData: 0,
-      listDept: [],
-      listJobs: [],
-      ket: 'Tambah'
+      // listDept: [],
+      // listJobs: [],
+      // ket: 'Tambah'
     };
     // this.ubahFieldPegawai = this.ubahFieldPegawai.bind(this);
     // this.addListPegawai = this.addListPegawai.bind(this);
@@ -49,7 +45,7 @@ class trnasabah extends Component {
         : `field=${field}&value=${value}&page=${page}&size=${size}`;
     // alert(`${url}/api/emp/getEmp?${fetchUrl}`);
     //alert(`${url}/api/employees/getEmployee?${fetchUrl}`);
-    fetch(`${url}/api/mst-bank/`)
+    fetch(`${url}/api/mst-bank?${fetchUrl}`)
       .then((response) => response.json())
       .then((Emp) => {
         // this.props.dispatchListPegawai(Emp.data)
@@ -63,7 +59,7 @@ class trnasabah extends Component {
           () => {
             this.setState(
               (prevState) => ({
-                totalData: Emp.data.total_data,
+                totalData: Emp.data.total_Data,
               })
             );
 
@@ -96,7 +92,7 @@ class trnasabah extends Component {
     let value = queryParams.get("value")
     let page = queryParams.get("page")
 
-    if (size == null) size = 10;
+    if (size == null) size = 5;
 
     if (page === null) {
       page = 1

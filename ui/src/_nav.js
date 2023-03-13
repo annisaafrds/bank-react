@@ -122,7 +122,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Transfer',
-    to: '/nsbh/',
+    to: '/nsbh/transfer',
     icon: <CIcon icon={cilSwapHorizontal} customClassName="nav-icon" />,
   },
   {

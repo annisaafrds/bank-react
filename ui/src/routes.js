@@ -62,7 +62,7 @@ const routes = [
   { path: '/nsbh/cek', name: 'Cek Saldo', element: Cek },
   { path: '/tlpadm/mst_plg', name: 'mstPlg', element: MstPlg },
   { path: '/bnk_adm/trksi_nsbh', name: 'Transaksi Nasabah', element: Trnasabah },
-  { path: '/nsbh', name: 'Transfer', element: Transfer },
+  { path: '/nsbh/transfer', name: 'Transfer', element: Transfer },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },

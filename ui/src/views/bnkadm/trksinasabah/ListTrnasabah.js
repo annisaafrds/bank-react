@@ -20,32 +20,25 @@ class ListTrnasabah extends Component {
             // },
             {
                 name: "Norek",
-                selector: "NOREK",
+                selector: "norek",
             },
             {
-                name: "Tanggal",
-                selector: "TANGGAL",
+                name: "Nama",
+                selector: "nama",
             },
             {
-                name: "Status",
-                selector: "STATUS",
+                name: "Alamat",
+                selector: "alamat",
             },
             {
-                name: "Uang",
-                selector: "UANG",
+                name: "No Tlp",
+                selector: "noTelp",
             },
             {
-                name: "Status",
-                selector: "STATUS_KET",
+                name: "Saldo",
+                selector: "saldo",
             },
-            {
-                name: "Norek Dituju",
-                selector: "NOREK_DITUJU",
-            },
-            {
-                name: "No",
-                selector: "NO_TLP",
-            },
+
             // {
             //     name: "Department",
             //     // cell: (row) => row.departments.DEPARTMENT_NAME,
