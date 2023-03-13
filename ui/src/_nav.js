@@ -104,7 +104,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Cek Saldo ',
-    to: '/nsbh/',
+    to: '/nsbh/cek',
     icon: <CIcon icon={cilWallet} customClassName="nav-icon" />,
   },
   {

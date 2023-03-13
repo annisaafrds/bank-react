@@ -2,6 +2,7 @@ import React from 'react'
 
 const MstPlg = React.lazy(() => import('./views/tlpadm/mst_plg/mst_plg'))
 const Setor = React.lazy(() => import('./views/nasabah/setor-tunai/Setor'))
+const Cek = React.lazy(() => import('./views/nasabah/cek-saldo/cek-saldo'))
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -56,6 +57,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/nsbh/setor', name: 'Setor Tunai', element: Setor },
+  { path: '/nsbh/cek', name: 'Cek Saldo', element: Cek },
   { path: '/tlpadm/mst_plg', name: 'mstPlg', element: MstPlg },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
