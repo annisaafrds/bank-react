@@ -110,7 +110,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Setor Tunai',
-    to: '/nsbh/',
+    to: '/nsbh/setor',
     icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
   },
   {
