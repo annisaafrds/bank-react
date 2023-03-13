@@ -1,0 +1,40 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300);
+
+
+.rdt_Table .rdt_TableRow:hover {
+  background-color: #4488ff;
+  color: #fff;
+}
+
+.rdt_TableCell:first-child {
+  background-color: #aaaaaa;
+  color: #fff;
+}
+
+.rdt_Table .rdt_TableRow {
+  background-color: #4488ff;
+  color: #fff;
+  border-color: #000;
+}
+
+.rdt_Table .rdt_TableCol {
+  color: #000;
+  border-color: #000;
+  background-color: rgb(224, 95, 117);
+}
+
+button#pagination-first-page {
+  background-color: tan;
+}
+
+button#pagination-previous-page {
+  background-color: tan;
+}
+
+button#pagination-next-page {
+  background-color: tan;
+}
+
+button#pagination-last-page {
+  background-color: tan;
+}
