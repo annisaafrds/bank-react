@@ -1,7 +1,7 @@
 function mstBankRepository(db) {
 
 
-    const getOptionsMstBank = (condition, limit, offset) => {
+    const getOptionsMstBank = (condition) => {
         return db.mstBankDB.findAndCountAll({
             attributes:[
                 'norek',
