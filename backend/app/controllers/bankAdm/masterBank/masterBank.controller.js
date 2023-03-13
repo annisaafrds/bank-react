@@ -62,29 +62,29 @@ exports.getOptionsMstBank = async (req, res) => {
 };
 
 exports.getByNorek = async (req, res) => {
-  const { page, size, field, value } = req.query;
+  
+  const { value } = req.query;
   try {
     var condition = null;
-    const { limit, offset } = getPagination(page - 1, size);
+    //const { limit, offset } = getPagination(page - 1, size);
 
-    if (field !== null && value !== null) {
-      const params = field;
-      if (process.env.DIALECT === "oracle") {
-        condition = { [field]: { $like: `%${value}%` } };
-      } else {
-        const Op = db.Sequelize.Op;
-        const norek = parseInt(req.query.norek)
-        condition = req.query
-      }
-    }
-    var data = await mstBankRepo.getOptionsMstBank(condition, limit, offset);
+//    const Op = db.Sequelize.Op;
+    //const norek = parseInt(req.query.norek)
+    
+      condition = { ["norek"]: `${value}`  };
 
-    const response = getPagingData(data, page, limit);
+    console.log("condition",condition)
+    var data = await mstBankRepo.getOptionsMstBank(condition);
+    
+    //const response = getPagingData(data, page, limit);
+  
     let message = {
       english: `Successfully Retrieved Data Master Bank`,
       //"indonesia" : `Berhasil Mengambil Data EMP`,
     };
-    res.send(jsonMessage.jsonSuccess(message, response));
+    res.send(data)
+
+    //res.send(jsonMessage.jsonSuccess(message, response));
   } catch (err) {
     const errMessage = err.message || "Some error occurred while get Data Master Bank";
     if (err.original !== undefined) {
