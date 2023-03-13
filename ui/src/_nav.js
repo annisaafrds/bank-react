@@ -13,10 +13,34 @@ import {
   cilWallet,
   cilArrowTop,
   cilPhone,
+  cilMenu,
+  cilSpreadsheet,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
+  {
+    component: CNavTitle,
+    name: 'USER ADM',
+  },
+  {
+    component: CNavItem,
+    name: 'Role',
+    to: '/role',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Role Menu',
+    to: '/role_menu',
+    icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Menu',
+    to: '/menu',
+    icon: <CIcon icon={cilMenu} customClassName="nav-icon" />,
+  },
   {
     component: CNavItem,
     name: 'Hak Akses',
@@ -30,12 +54,6 @@ const _nav = [
     icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
   },
   {
-    component: CNavItem,
-    name: 'Sub Menu',
-    to: '/sub_menu',
-    icon: <CIcon icon={cilListRich} customClassName="nav-icon" />,
-  },
-  {
     component: CNavTitle,
     name: 'BANK ADM',
   },
@@ -46,27 +64,16 @@ const _nav = [
     icon: <CIcon icon={cilBank} customClassName="nav-icon" />,
   },
   {
-    component: CNavGroup,
-    name: 'History Bank',
-    to: '/bnk_adm/hstry_bnk/',
+    component: CNavItem,
+    name: 'Transaksi Nasabah',
+    to: '/bnk_adm/trksi_nsbh/',
     icon: <CIcon icon={cilCalendar} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Buttons',
-        to: '/buttons/buttons',
-      },
-      {
-        component: CNavItem,
-        name: 'Buttons groups',
-        to: '/buttons/button-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Dropdowns',
-        to: '/buttons/dropdowns',
-      },
-    ],
+  },
+  {
+    component: CNavItem,
+    name: 'History Transaksi Nasabah',
+    to: '/bnk_adm/trksi_hist_nsbh/',
+    icon: <CIcon icon={cilHistory} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
@@ -74,20 +81,20 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Master Telkom',
-    to: '/tlpadm/',
+    name: 'Master Pelanggan',
+    to: '/tlpadm/mst_plg/',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Laporan Penunggakan',
-    to: '/tlpadm/',
+    name: 'Transaksi Telkom',
+    to: '/tlpadm/trksi_tlkm/',
     icon: <CIcon icon={cilSwapHorizontal} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Laporan Pelunasan',
-    to: '/tlpadm/',
+    name: 'History Transaksi',
+    to: '/tlpadm/hist_trksi/',
     icon: <CIcon icon={cilHistory} customClassName="nav-icon" />,
   },
   {
@@ -98,17 +105,17 @@ const _nav = [
     component: CNavItem,
     name: 'Cek Saldo ',
     to: '/nsbh/',
-    icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilWallet} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Setor Tunai',
     to: '/nsbh/',
-    icon: <CIcon icon={cilWallet} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Tarik Tunai',
+    name: 'Ambil Tunai',
     to: '/nsbh/',
     icon: <CIcon icon={cilArrowTop} customClassName="nav-icon" />,
   },
