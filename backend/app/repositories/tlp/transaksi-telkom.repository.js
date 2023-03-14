@@ -28,6 +28,18 @@ function transaksiTelkomRepository(db) {
                  'uang',
                  'status' 
              ],
+        include: [
+        {
+            //through:{
+            attributes:['nama'//'KODEATASAN',//'MANAGERNAME'
+            ],//},//},
+            model: db.masterpelangganDB,
+            as:'MASTERPELANGGAN', 
+            required:false,
+
+            //where : {EMPNO : 20 },
+
+        }],
         where : {
          ... condition
         },

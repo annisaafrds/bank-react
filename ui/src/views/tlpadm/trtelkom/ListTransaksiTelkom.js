@@ -17,9 +17,9 @@ class ListTransaksiTelkom extends Component {
     render() {
         const columns = [
             {
-                name: "Pelanggan",
-                selector: "idPelanggan",
-                width: "120px",
+              name: "Pelanggan",
+              // cell: (row) => row.departments.DEPARTMENT_NAME,
+              cell: (row) => row.MASTERPELANGGAN === null ? '' : row.MASTERPELANGGAN.nama,
             },
             {
                 name: "Bulan Tagihan",

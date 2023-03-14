@@ -35,7 +35,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   transaksiTelkomDB.associate = function(models) {
-    transaksiTelkomDB.belongsTo(models.mstBankDB, {foreignKey: 'idPelanggan',sourceKey: 'idPelanggan'})
+    transaksiTelkomDB.belongsTo(models.masterpelangganDB, {foreignKey: 'idPelanggan',sourceKey: 'idPelanggan'})
   };
 
     return transaksiTelkomDB;

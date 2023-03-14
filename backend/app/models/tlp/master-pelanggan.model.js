@@ -31,7 +31,7 @@ module.exports = (sequelize, Sequelize) => {
     });
   
     masterpelangganDB.associate = function(models) {
-    //   masterpelangganDB.belongsTo(models.managerDB, {foreignKey: 'managerId',sourceKey: ''})
+      masterpelangganDB.hasMany(models.transaksiTelkomDB, {foreignKey: 'idPelanggan',sourceKey: 'idPelanggan'})
     //   masterpelangganDB.belongsTo(models.deptDB, {foreignKey: 'departmentId'})
     //   masterpelangganDB.belongsTo(models.jobDB, {foreignKey: 'jobId'})
     };
