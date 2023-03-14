@@ -4,6 +4,7 @@ import DataTable, {
     defaultThemes,
 } from "react-data-table-component";
 import { connect } from "react-redux";
+import moment from 'moment';
 
 class ListHistoryTelkom extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class ListHistoryTelkom extends Component {
           },
           {
               name: "Tanggal Bayar",
-              selector: "tanggalBayar",
+              selector: (row) => moment(row.tanggalBayar).format('L'),
           },
           {
               name: "Bulan Tagihan",
