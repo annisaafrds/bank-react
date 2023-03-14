@@ -23,8 +23,8 @@ class mstPlg extends Component {
         alamat: '',
       },
       listPelanggan: [],
-      size:10,
-      page:1,
+      size: 10,
+      page: 1,
       field:'',
       value:'',
       totalData:0,
@@ -54,13 +54,13 @@ class mstPlg extends Component {
          () => {
           this.setState(
             (prevState) => ({
-              totalData: Plg.total_data,
+              totalData: Plg.data.total_data,
             })
           );
 
           this.setState(
             (prevState) => ({
-              size: size,
+              size: Plg.data.total_page,
             })/*,
             () => {
               this.setState((prevState) => ({
@@ -84,11 +84,11 @@ class mstPlg extends Component {
     let value = queryParams.get("value")
     let page = queryParams.get("page")
 
-    if(size==null)size=5;
+    if (size == null) size=10;
     //if(page===null)page=1;
 
-    if (page=== null) {
-    page=1
+    if (page === null) {
+      page = 1
     }
 
     if(value==null)value="";
@@ -139,8 +139,8 @@ class mstPlg extends Component {
         // updateList={this.updateList}
         handlePageChange={this.handlePageChange}
         handlePerRowsChange={this.handlePerRowsChange}
-        countPerPage={this.state.size}
-        totalData={this.state.totalData}
+        countPerPage={this.state.total_page}
+        totalData={this.state.size}
         />
       );
 

@@ -26,18 +26,36 @@ class ListPelanggan  extends Component{
         {
           name: "ID",
           selector: "idPelanggan",
+          sortable: true,
+          width: "80px"
         },
         {
           name: "Nama",
           selector: "nama",
+          sortable: true,
         },
         {
-          name: "Np Telp",
+          name: "No Telp",
           selector: "noTelp",
+          sortable: true,
         },
         {
           name: "Alamat",
           selector: "alamat",
+          sortable: true,
+        },
+        {
+          name: "Action",
+          button: true,
+          cell: (row) => {
+              return (
+                  <>
+                      <CButton size="sm"  color="warning" shape="rounded-pill" onClick={() => this.props.updateList(row)}>Edit</CButton>
+                      <CButton size="sm" className="ml-md-3" color="danger" shape="rounded-pill"  onClick={(e) => this.props.deletePegawai(row)}>Delete</CButton>
+                  </>
+
+              );
+          },
         },
       ];
 
@@ -62,8 +80,7 @@ class ListPelanggan  extends Component{
                     pagination
                     paginationServer
                     paginationTotalRows={this.props.total_data}
-                    paginationPerPage={this.props.size}
-
+                    paginationPerPage={this.props.total_page}
                     onChangePage={(page) => this.props.handlePageChange(page)}
                     onChangeRowsPerPage={(size) => this.props.handlePerRowsChange(size)}
                 //firstPage = {this.props.firstPageSage}
