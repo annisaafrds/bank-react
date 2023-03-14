@@ -8,6 +8,8 @@ const Transfer = React.lazy(() => import('./views/nasabah/transfer/transfer.js')
 const TransaksiTelkom = React.lazy(() => import('./views/tlpadm/trtelkom/TransaksiTelkom'))
 const HistoryTelkom = React.lazy(() => import('./views/tlpadm/histtelkom/HistoryTelkom'))
 const Ambil = React.lazy(() => import('./views/nasabah/ambil/ambil'))
+const HistoryAmbil = React.lazy(() => import('./views/bnkadm/history-transaksi/ambil/ambil.js'))
+const HistorySetor = React.lazy(() => import('./views/bnkadm/history-transaksi/history-setor/historySetor.js'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -19,6 +21,9 @@ const routes = [
   { path: '/nsbh/transfer', name: 'Transfer', element: Transfer },
   { path: '/tlpadm/trksi_tlkm', name: 'Transaksi Telkom', element: TransaksiTelkom },
   { path: '/tlpadm/hist_trksi', name: 'History Telkom', element: HistoryTelkom },
+  { path: '/trksi_hist_nsbh', name: 'trksi_hist_nsbh', element: Ambil, exact: true },
+  { path: '/trksi_hist_nsbh/ambil', name: 'Ambil', element: HistoryAmbil },
+  { path: '/trksi_hist_nsbh/setor', name: 'Setor', element: HistorySetor },
 ]
 
 export default routes
