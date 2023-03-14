@@ -1,16 +1,9 @@
 import React, { Component, useEffect, useState } from 'react'
-import {
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CRow,
-} from '@coreui/react'
-import { DocsExample } from 'src/components'
-import DataTable from "react-data-table-component";
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import ListPelanggan from './ListPelanggan';
-
-
+import { Card } from 'primereact/card';
+import { Button } from 'primereact/button';
 class mstPlg extends Component {
 
   constructor(props) {
@@ -61,13 +54,7 @@ class mstPlg extends Component {
           this.setState(
             (prevState) => ({
               size: Plg.data.total_page,
-            })/*,
-            () => {
-              this.setState((prevState) => ({
-                NumberOfPages: this.state.totalData / size,
-              }));
-              console.log("totalData", this.state.totalData);
-            }*/
+            })
           );
          }
        );
@@ -134,16 +121,82 @@ class mstPlg extends Component {
   }
 
   render() {
-      return (
-        <ListPelanggan listPelanggan={this.state.listPelanggan}
-        // updateList={this.updateList}
-        handlePageChange={this.handlePageChange}
-        handlePerRowsChange={this.handlePerRowsChange}
-        countPerPage={this.state.total_page}
-        totalData={this.state.size}
-        />
-      );
+    const columns = [
+      {
+        name: "ID",
+        selector: "idPelanggan",
+        sortable: true,
+        width: "80px"
+      },
+      {
+        name: "Nama",
+        selector: "nama",
+        sortable: true,
+      },
+      {
+        name: "No Telp",
+        selector: "noTelp",
+        sortable: true,
+      },
+      {
+        name: "Alamat",
+        selector: "alamat",
+        sortable: true,
+      },
+      {
+        name: "Action",
+        button: true,
+        cell: (row) => {
+            return (
+                <>
+                    <CButton size="sm"  color="warning" shape="rounded-pill" onClick={() => this.props.updateList(row)}>Edit</CButton>
+                    <CButton size="sm" className="ml-md-3" color="danger" shape="rounded-pill"  onClick={(e) => this.props.deletePegawai(row)}>Delete</CButton>
+                </>
 
+            );
+        },
+      },
+    ];
+
+      return (
+        // <ListPelanggan listPelanggan={this.state.listPelanggan}
+        // // updateList={this.updateList}
+        // handlePageChange={this.handlePageChange}
+        // handlePerRowsChange={this.handlePerRowsChange}
+        // countPerPage={this.state.total_page}
+        // totalData={this.state.size}
+        // />
+        <>
+        <Card>
+          <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" style={{display: 'flex', justifyContent: 'flex-end'}} />
+            <DataTable stripedRows header="Data Pelanggan" value={this.state.listPelanggan} tableStyle={{ minWidth: '50rem' }}
+            paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
+            filterDisplay="row"
+            globalFilterFields={['idPelanggan', 'nama', 'noTelp', 'alamat']}
+            emptyMessage="No customers found.">
+              <Column field="idPelanggan" header="ID" sortable style={{ minWidth: '2rem' }}></Column>
+              <Column field="nama" header="Nama" sortable ></Column>
+              <Column field="noTelp" header="No Telepon" sortable ></Column>
+              <Column field="alamat" header="alamat" sortable ></Column>
+              <Column header="Actions" body={(data, state) =>
+                <div>
+                    <Button icon="pi pi-pencil" className="p-button-rounded p-button-text"
+                            onClick={(e) => {
+                                console.log("row idx: " + data.idPelanggan);
+                            }
+                        }/>
+                    <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
+                            onClick={(e) => {
+                                console.log("row idx: " + data.idPelanggan);
+                            }
+                        }/>
+                </div>
+            }>
+            </Column>
+            </DataTable>
+        </Card>
+        </>
+      );
   }
 
 }

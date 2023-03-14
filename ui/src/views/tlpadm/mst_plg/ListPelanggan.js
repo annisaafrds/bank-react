@@ -59,7 +59,6 @@ class ListPelanggan  extends Component{
         },
       ];
 
-
     //    this.ubahProps()
         return(
         <>
@@ -68,15 +67,16 @@ class ListPelanggan  extends Component{
             <CButton className="mb-3" type="submit" color="primary">Add Pelanggan</CButton>
           </Link>
         <CCard>
-          <CCardHeader><strong>Master Pelanggan</strong></CCardHeader>
+          <CCardHeader><strong>Data Pelanggan</strong></CCardHeader>
           <CCardBody>
+            <div className="text-end mb-2">
+              <input type="text" onChange={handleFilter} />
+            </div>
             <DataTable
                     columns={columns}
                     data={this.props.listPelanggan}
                     theme="solarized"
-                    // customStyles={tableCustomStyle}
-                    // customStyles={customStyles}
-                    selectableRows
+                    fixedHeader
                     pagination
                     paginationServer
                     paginationTotalRows={this.props.total_data}
