@@ -19,10 +19,12 @@ class ListTransaksiTelkom extends Component {
             {
                 name: "Pelanggan",
                 selector: "idPelanggan",
+                width: "120px",
             },
             {
                 name: "Bulan Tagihan",
                 selector: "bulanTagihan",
+                width: "150px",
             },
             {
                 name: "Tahun Tagihan",
@@ -35,29 +37,21 @@ class ListTransaksiTelkom extends Component {
             {
                 name: "Status",
                 cell: (row) => row.status == "1"? <button className="btn btn-sm btn-success">Setor</button> : <button className="btn btn-sm btn-warning">Tarik</button>,
-            }
-            // {
-            //     name: "Department",
-            //     // cell: (row) => row.departments.DEPARTMENT_NAME,
-            //     cell: (row) => row.departments === null ? '' : row.departments.DEPARTMENT_NAME,
-            // },
-            // {
-            //     name: "Job",
-            //     cell: (row) => row.jobs.JOB_TITLE,
-            // },
-            // {
-            //     name: "Action",
-            //     button: true,
-            //     cell: (row) => {
-            //         return (
-            //             <>
-            //                 <button onClick={() => this.props.updateList(row)}>Edit</button>
-            //                 <button onClick={(e) => this.props.deletePegawai(row)}>Delete</button>
-            //             </>
+            },
+            {
+                name: "Action",
+                button: true,
+                width: "200px",
+                cell: (row) => {
+                    return (
+                        <>
+                            <button className="btn btn-sm btn-secondary" onClick={() => this.props.updateList(row)}>Edit</button>&nbsp;
+                            <button className="btn btn-sm btn-danger" onClick={(e) => this.props.deletePegawai(row)}>Delete</button>
+                        </>
 
-            //         );
-            //     },
-            // },
+                    );
+                },
+            },
         ];
 
         return (
@@ -75,7 +69,7 @@ class ListTransaksiTelkom extends Component {
                     selectableRows
                     pagination
                     paginationServer
-                    paginationTotalRows={this.props.total_data}
+                    paginationTotalRows={this.props.totalData}
                     paginationPerPage={this.props.size}
 
                     onChangePage={(page) => this.props.handlePageChange(page)}
