@@ -28,7 +28,7 @@ class ListAmbil extends Component {
             },
             {
                 name: "Status Keterangan",
-                selector: "statusKet",
+                // selector: "statusKet",
                 cell: (row) => row.statusKet = "2",
 
             },
@@ -67,7 +67,6 @@ class ListAmbil extends Component {
 
         return (
             <>
-                {/* <p>{this.props.listTrnasabah}</p> */}
                 <DataTable
                     columns={columns}
                     data={this.props.listAmbil}
@@ -77,7 +76,7 @@ class ListAmbil extends Component {
                     selectableRows
                     pagination
                     paginationServer
-                    paginationTotalRows={this.props.total_data}
+                    paginationTotalRows={this.props.totalData}
                     paginationPerPage={this.props.size}
 
                     onChangePage={(page) => this.props.handlePageChange(page)}

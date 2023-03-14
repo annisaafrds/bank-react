@@ -60,7 +60,7 @@ class ambil extends Component {
                     () => {
                         this.setState(
                             (prevState) => ({
-                                // totalData: Emp.data.total_Data,
+                                totalData: Emp.data.total_data,
                             })
                         );
 
@@ -93,7 +93,7 @@ class ambil extends Component {
         let value = queryParams.get("value")
         let page = queryParams.get("page")
 
-        if (size == null) size = 5;
+        if (size == null) size = 10;
 
         if (page === null) {
             page = 1

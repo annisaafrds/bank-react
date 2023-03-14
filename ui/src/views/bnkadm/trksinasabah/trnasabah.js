@@ -45,7 +45,7 @@ class trnasabah extends Component {
         : `field=${field}&value=${value}&page=${page}&size=${size}`;
     // alert(`${url}/api/emp/getEmp?${fetchUrl}`);
     //alert(`${url}/api/employees/getEmployee?${fetchUrl}`);
-    fetch(`${url}/api/mst-bank?${fetchUrl}`)
+    fetch(`${url}/api/trnasabah?${fetchUrl}`)
       .then((response) => response.json())
       .then((Emp) => {
         // this.props.dispatchListPegawai(Emp.data)
@@ -334,6 +334,19 @@ class trnasabah extends Component {
             totalData={this.state.totalData}
           />
           <br /><br />
+        </div>
+        <div class="col-2">
+          <h6>**Keterangan</h6>
+          <ul>
+            <li>1 : Setor</li>
+            <li>2 : Tarik</li>
+          </ul>
+        </div>
+        <div class="col-2">
+          <ul>
+            <li>3 : Transfer</li>
+            <li>4 : Bayar Telepon</li>
+          </ul>
         </div>
       </div>
     );

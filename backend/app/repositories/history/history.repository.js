@@ -23,7 +23,11 @@ function historyRepository(db) {
                 //'$DEPT.DEPTNO$' : 30, 
                 ...condition
             },
+            limit,
+            offset,
             raw: true,
+            nest: true,
+            plain: false,
             //            nest : true,
             //            plain: true,
 

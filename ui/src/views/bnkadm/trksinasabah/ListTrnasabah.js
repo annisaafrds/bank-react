@@ -27,8 +27,12 @@ class ListTrnasabah extends Component {
                 selector: "nama",
             },
             {
-                name: "Alamat",
-                selector: "alamat",
+                name: "Tanggal",
+                selector: "tanggal",
+            },
+            {
+                name: "Status",
+                selector: "status",
             },
             {
                 name: "No Tlp",
@@ -36,7 +40,15 @@ class ListTrnasabah extends Component {
             },
             {
                 name: "Saldo",
-                selector: "saldo",
+                selector: "uang",
+            },
+            {
+                name: "Keterangan",
+                selector: "statusKet",
+            },
+            {
+                name: "No Rek Dituju",
+                selector: "norekDituju",
             },
 
             // {
