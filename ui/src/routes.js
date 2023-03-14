@@ -3,6 +3,7 @@ import React from 'react'
 const MstPlg = React.lazy(() => import('./views/tlpadm/mst_plg/mst_plg'))
 const Setor = React.lazy(() => import('./views/nasabah/setor-tunai/Setor'))
 const Cek = React.lazy(() => import('./views/nasabah/cek-saldo/cek-saldo'))
+const bankMaster = React.lazy(() => import('./views/bnkadm/bankMaster/bankMaster.js'))
 const Trnasabah = React.lazy(() => import('./views/bnkadm/trksinasabah/trnasabah.js'))
 const Transfer = React.lazy(() => import('./views/nasabah/transfer/transfer.js'))
 const TransaksiTelkom = React.lazy(() => import('./views/tlpadm/trtelkom/TransaksiTelkom'))
@@ -19,6 +20,7 @@ const routes = [
   { path: '/nsbh/ambil', name: 'Ambil Tunai', element: Ambil },
   { path: '/nsbh/bayar-telepon', name: 'Bayar Telepon', element: BayarTelepon },
   { path: '/tlpadm/mst_plg', name: 'Master Pelanggan', element: MstPlg },
+  { path: '/bnk_adm/mst_bnk/', name: 'Master Bank', element: bankMaster },
   { path: '/bnk_adm/trksi_nsbh', name: 'Transaksi Nasabah', element: Trnasabah },
   { path: '/nsbh/transfer', name: 'Transfer', element: Transfer },
   { path: '/tlpadm/trksi_tlkm', name: 'Transaksi Telkom', element: TransaksiTelkom },
