@@ -70,10 +70,32 @@ const _nav = [
     icon: <CIcon icon={cilCalendar} customClassName="nav-icon" />,
   },
   {
-    component: CNavItem,
-    name: 'History Transaksi Nasabah',
-    to: '/bnk_adm/trksi_hist_nsbh/',
+    component: CNavGroup,
+    name: 'History Transaksi',
+    to: '/trksi_hist_nsbh',
     icon: <CIcon icon={cilHistory} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Setor',
+        to: '/trksi_hist_nsbh/setor',
+      },
+      {
+        component: CNavItem,
+        name: 'Ambil',
+        to: '/trksi_hist_nsbh/ambil',
+      },
+      {
+        component: CNavItem,
+        name: 'Transfer',
+        to: '/trksi_hist_nsbh/transfer',
+      },
+      {
+        component: CNavItem,
+        name: 'Bayar Telepon',
+        to: '/trksi_hist_nsbh/bayartlp',
+      },
+    ]
   },
   {
     component: CNavTitle,
