@@ -3,34 +3,24 @@ import {
   CButton,
   CCard,
   CCardBody,
+  CCardFooter,
   CCardHeader,
   CCol,
-  CForm,
   CFormInput,
-  CFormLabel,
-  CFormTextarea,
   CRow,
-  CCardFooter,
 } from '@coreui/react'
-import { DocsExample } from 'src/components'
 
-const Ambil = () => {
-
-  // cancelButton() {
-  //   document.getElementById("input-rek").reset();
-  // }
-
+const BayarTelepon = () => {
   return (
     <CRow>
       <CCol xs={12}>
         <CCard mb={4}>
           <CCardHeader>
-            <strong>Ambil Tunai</strong>
+            <strong>Bayar Telepon</strong>
           </CCardHeader>
           <CCardBody>
             <CCol sm={3}>
-              <form id="input-rek">
-              <p className="text-medium-emphasis small w-full">
+              <p className="text-medium-emphasis small">
                 Masukkan Nomor Rekening:
               </p>
               <CFormInput
@@ -39,7 +29,6 @@ const Ambil = () => {
                   placeholder="Nomor Rekening"
                   aria-label="default input example"
               />
-              </form>
             </CCol>
           </CCardBody>
           <CCardFooter>
@@ -59,4 +48,4 @@ const Ambil = () => {
   )
 }
 
-export default Ambil
+export default BayarTelepon

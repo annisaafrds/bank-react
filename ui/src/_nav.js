@@ -128,7 +128,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Bayar Telepon',
-    to: '/nsbh/',
+    to: '/nsbh/bayar-telepon/',
     icon: <CIcon icon={cilPhone} customClassName="nav-icon" />,
   },
 ]
