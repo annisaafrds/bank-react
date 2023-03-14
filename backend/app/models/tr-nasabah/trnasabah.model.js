@@ -44,12 +44,12 @@ module.exports = (sequelize, Sequelize) => {
             freezeTableName: true
         });
 
-    // provDB.associate = function (models) {
-    //     provDB.belongsTo(models.managerDB, { foreignKey: 'managerId', sourceKey: '' })
+    trnasabahDB.associate = function (models) {
+        // provDB.belongsTo(models.managerDB, { foreignKey: 'managerId', sourceKey: '' })
 
-    //     provDB.belongsTo(models.deptDB, { foreignKey: 'departmentId' })
-    //     provDB.belongsTo(models.jobDB, { foreignKey: 'jobId' })
-    // };
+        trnasabahDB.belongsTo(models.mstBankDB, { foreignKey: 'norek' })
+        // provDB.belongsTo(models.jobDB, { foreignKey: 'jobId' })
+    };
 
     return trnasabahDB;
 };

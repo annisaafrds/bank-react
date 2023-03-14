@@ -24,7 +24,8 @@ class ListTrnasabah extends Component {
             },
             {
                 name: "Nama",
-                selector: "nama",
+                cell: (row) => row.MSTBANK === null ? '' : row.MSTBANK.nama,
+
             },
             {
                 name: "Tanggal",

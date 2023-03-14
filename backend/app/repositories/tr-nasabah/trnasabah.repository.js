@@ -51,6 +51,14 @@ function trnasabahRepository(db) {
 
 
                 ],
+            include: [
+                {
+                    attributes: ['nama'],
+                    model: db.mstBankDB,
+                    as: 'MSTBANK',
+                    required: false,
+                }
+            ],
 
             /**/
 
