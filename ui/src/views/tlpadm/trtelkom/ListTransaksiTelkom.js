@@ -3,7 +3,11 @@ import DataTable, {
     createTheme,
     defaultThemes,
 } from "react-data-table-component";
+import {
+  CButton,
+} from '@coreui/react'
 import { connect } from "react-redux";
+import {Link } from "react-router-dom";
 
 class ListTransaksiTelkom extends Component {
     constructor(props) {
@@ -30,7 +34,7 @@ class ListTransaksiTelkom extends Component {
             },
             {
                 name: "Status",
-                selector: "status",
+                cell: (row) => row.status == "1"? <button className="btn btn-sm btn-success">Setor</button> : <button className="btn btn-sm btn-warning">Tarik</button>,
             }
             // {
             //     name: "Department",
@@ -59,6 +63,9 @@ class ListTransaksiTelkom extends Component {
         return (
             <>
                 {/* <p>{this.props.listTransaksiTelkom[0]}</p> */}
+                <Link to ='/addTransaksiTelkom' >
+                  <CButton className="mb-3" type="submit" color="primary">(+) Transaksi Telkom</CButton>
+                </Link>
                 <DataTable
                     columns={columns}
                     data={this.props.listTransaksiTelkom}
