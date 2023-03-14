@@ -49,7 +49,7 @@ class TransaksiTelkom extends Component {
         : `field=${field}&value=${value}&page=${page}&size=${size}`;
     // alert(`${url}/api/emp/getEmp?${fetchUrl}`);
     //alert(`${url}/api/employees/getEmployee?${fetchUrl}`);
-    fetch(`${url}/api/transaksi-telkom/`)
+    fetch(`${url}/api/transaksi-telkom?${fetchUrl}`)
       .then((response) => response.json())
       .then((Emp) => {
         // this.props.dispatchListPegawai(Emp.data)
