@@ -61,7 +61,7 @@ class historySetor extends Component {
                     () => {
                         this.setState(
                             (prevState) => ({
-                                totalData: Emp.total_Data,
+                                totalData: Emp.data.total_data,
                             })
                         );
 

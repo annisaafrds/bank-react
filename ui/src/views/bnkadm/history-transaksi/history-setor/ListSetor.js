@@ -77,7 +77,7 @@ class ListSetor extends Component {
                     selectableRows
                     pagination
                     paginationServer
-                    paginationTotalRows={this.props.total_data}
+                    paginationTotalRows={this.props.totalData}
                     paginationPerPage={this.props.size}
 
                     onChangePage={(page) => this.props.handlePageChange(page)}
