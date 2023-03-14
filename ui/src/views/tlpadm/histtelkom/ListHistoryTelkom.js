@@ -19,7 +19,7 @@ class ListHistoryTelkom extends Component {
           },
           {
               name: "Tanggal Bayar",
-              selector: (row) => moment(row.tanggalBayar).format('L'),
+              selector: (row) => moment(row.tanggalBayar).format('DD/MM/YYYY'),
           },
           {
               name: "Bulan Tagihan",
