@@ -22,7 +22,7 @@ const HistoryTelp = React.lazy(() => import('./views/bnkadm/history-transaksi/ba
 
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Home', element: Dashboard },
   { path: '/nsbh/setor', name: 'Setor Tunai', element: Setor },
   { path: '/nsbh/cek', name: 'Cek Saldo', element: Cek },
   { path: '/nsbh/ambil', name: 'Ambil Tunai', element: Ambil },
