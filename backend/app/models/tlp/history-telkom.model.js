@@ -34,9 +34,9 @@ module.exports = (sequelize, Sequelize) => {
     //freezeTableName: true
   });
 
-  // transaksiTelkomDB.associate = function(models) {
-  //   transaksiTelkomDB.belongsTo(models.transaksiTelkomDB, {foreignKey: 'idPelanggan',sourceKey: 'idPelanggan'})
-  // };
+  historyTelkomDB.associate = function(models) {
+    historyTelkomDB.belongsTo(models.masterpelangganDB, {foreignKey: 'idPelanggan',sourceKey: 'idPelanggan'})
+  };
 
     return historyTelkomDB;
   };

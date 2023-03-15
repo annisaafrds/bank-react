@@ -49,9 +49,9 @@ const setor = () => {
         },
       ]
   const listSaldo = (e) => {
-    alert('listSaldo')
+    // alert('listSaldo')
     e.preventDefault();
-    alert(`http://localhost:3535/api/mst-bank/getByNorek?value=`+norek,)
+    // alert(`http://localhost:3535/api/mst-bank/getByNorek?value=`+norek,)
     //const product = { title, price };
   fetch(`http://localhost:3535/api/mst-bank/getByNorek?value=`+norek)
     .then((response) =>
@@ -60,7 +60,7 @@ const setor = () => {
   )
   .then(json => {
     //acountBank,
-    alert("json")
+    // alert("json")
     console.log("json",json)
     setAcountBank(json)
   }

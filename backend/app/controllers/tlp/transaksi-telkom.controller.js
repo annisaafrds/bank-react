@@ -126,8 +126,8 @@ exports.insertTransaksiTelkom = async (req, res) => {
 exports.deleteTransaksiTelkom = async (req, res) => {
   const tr = await db.sequelize.transaction();
   try {
-    console.log("req.body.idTransaksi", req.body.idTransaksi);
-    const tempITransaksiTelkom = await transaksiTelkomRepo.deleteTransaksiTelkom(req.body.idTransaksi, tr);
+    console.log("req.query.idTransaksi", req.query.idTransaksi);
+    const tempITransaksiTelkom = await transaksiTelkomRepo.deleteTransaksiTelkom(req.query.idTransaksi, tr);
     let message = {
       english: `Successfully Delete TRANSAKSI_TELKOM`,
       indonesia: `Berhasil Delete TRANSAKSI_TELKOM`,

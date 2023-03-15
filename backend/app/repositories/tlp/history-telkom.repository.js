@@ -11,13 +11,25 @@ function historyTelkomRepository(db) {
                 'tahunTagihan',
                 'uang' 
              ],
+        include: [
+        {
+            //through:{
+            attributes:['nama'//'KODEATASAN',//'MANAGERNAME'
+            ],//},//},
+            model: db.masterpelangganDB,
+            as:'MASTERPELANGGAN', 
+            required:false,
+
+            //where : {EMPNO : 20 },
+
+        }],
         where : {
          ... condition
         },
         order :[
          'idHistory'
         ],
-        limit, 
+        // limit, 
         offset,
         raw : true,
              nest : true,

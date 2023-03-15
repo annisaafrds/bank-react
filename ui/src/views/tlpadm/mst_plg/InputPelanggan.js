@@ -3,6 +3,8 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { url } from '../../../Constanta';
+import { Link } from "react-router-dom";
+import "./style.css"
 class InputPelanggan extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +74,7 @@ class InputPelanggan extends Component {
       <Card>
         <form onSubmit={this.handleSubmit}>
             <div className="field grid">
-              <label className="col-12 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
               <InputText
                 id="idPelanggan"
                 name="idPelanggan"
@@ -81,45 +83,58 @@ class InputPelanggan extends Component {
                 required
                 aria-describedby="idPelanggan-help"
                 type="text"
-                className="col-12 md:col-10 w-1"
+                className="col-11 md:col-10 w-1"
                 style={{ width: '10%'}}
               />
             </div>
             <br/>
-            <div className="p-field">
-              <label htmlFor="nama">Nama</label>
+            <div className="field grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="nama">Nama</label>
               <InputText
                 id="nama"
                 name="nama"
                 value={nama}
                 onChange={this.handleInputChange}
                 required
+                type="text"
+                className="col-11 md:col-10 w-1"
+                // style={{ width: '10%'}}
               />
             </div>
             <br/>
-            <div className="p-field">
-              <label htmlFor="noTelp">No Telepon</label>
+            <div className="field grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="noTelp">No Telepon</label>
               <InputText
                 id="noTelp"
                 name="noTelp"
                 value={noTelp}
                 onChange={this.handleInputChange}
                 required
+                type="text"
+                className="col-11 md:col-10 w-1"
               />
             </div>
             <br/>
-            <div className="p-field">
-              <label htmlFor="alamat">Alamat</label>
+            <div className="field grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="alamat">Alamat</label>
               <InputText
                 id="alamat"
                 name="alamat"
                 value={alamat}
                 onChange={this.handleInputChange}
                 required
+                type="text"
+                className="col-11 md:col-10 w-1"
               />
             </div>
 
-          <Button label={buttonText} type="submit" />
+          <div className="mt-4">
+            <Button className="flex button-save" label={buttonText} type="submit" />
+            <Link to='/tlpadm/mst_plg/'>
+              <Button className="flex button-save" severity="secondary" label="Kembali" />
+            </Link>
+          </div>
+
         </form>
       </Card>
     );
