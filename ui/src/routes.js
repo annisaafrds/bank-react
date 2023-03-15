@@ -1,6 +1,7 @@
 import React from 'react'
 
 const MstPlg = React.lazy(() => import('./views/tlpadm/mst_plg/mst_plg'))
+const AddPelanggan = React.lazy(() => import('./views/tlpadm/mst_plg/AddPelanggan'))
 const Setor = React.lazy(() => import('./views/nasabah/setor-tunai/Setor'))
 const Cek = React.lazy(() => import('./views/nasabah/cek-saldo/cek-saldo'))
 const bankMaster = React.lazy(() => import('./views/bnkadm/bankMaster/bankMaster.js'))
@@ -20,6 +21,7 @@ const routes = [
   { path: '/nsbh/ambil', name: 'Ambil Tunai', element: Ambil },
   { path: '/nsbh/bayar-telepon', name: 'Bayar Telepon', element: BayarTelepon },
   { path: '/tlpadm/mst_plg', name: 'Master Pelanggan', element: MstPlg },
+  { path: '/tlpadm/mst_plg/addPelanggan', name: 'Tambah Pelanggan', element: AddPelanggan },
   { path: '/bnk_adm/mst_bnk/', name: 'Master Bank', element: bankMaster },
   { path: '/bnk_adm/trksi_nsbh', name: 'Transaksi Nasabah', element: Trnasabah },
   { path: '/nsbh/transfer', name: 'Transfer', element: Transfer },

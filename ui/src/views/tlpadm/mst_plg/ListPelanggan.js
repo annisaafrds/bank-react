@@ -63,9 +63,9 @@ class ListPelanggan  extends Component{
         return(
         <>
         <div className="container">
-          <Link to ='/addPelanggan' >
+          {/* <Link to ='/addPelanggan' >
             <CButton className="mb-3" type="submit" color="primary">Add Pelanggan</CButton>
-          </Link>
+          </Link> */}
         <CCard>
           <CCardHeader><strong>Data Pelanggan</strong></CCardHeader>
           <CCardBody>

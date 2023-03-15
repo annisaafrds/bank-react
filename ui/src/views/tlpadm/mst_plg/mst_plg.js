@@ -4,6 +4,10 @@ import { Column } from 'primereact/column';
 import ListPelanggan from './ListPelanggan';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
+import {Link } from "react-router-dom";
+import { url } from '../../../Constanta';
+import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
+
 class mstPlg extends Component {
 
   constructor(props) {
@@ -21,7 +25,11 @@ class mstPlg extends Component {
       field:'',
       value:'',
       totalData:0,
+
+      confirmationVisible: false, // state to show/hide the confirmation dialog
+      confirmationId: null // state to store the id of the customer to delete
     };
+
 
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handlePerRowsChange = this.handlePerRowsChange.bind(this);
@@ -120,44 +128,86 @@ class mstPlg extends Component {
     //fetchData(page, perPage);
   }
 
+  onDelete = (id) => {
+    this.setState({
+      confirmationVisible: true,
+      confirmationId: id
+    });
+  }
+
+  onConfirmDelete = () => {
+    const { confirmationId } = this.state;
+
+    fetch(`${url}/api/masterpelanggan/delete?idPelanggan=${confirmationId}`, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      if (response.ok) {
+        // remove the deleted customer from the list
+        const updatedList = this.state.listPelanggan.filter(item => item.idPelanggan !== confirmationId);
+        this.setState({
+          listPelanggan: updatedList
+        });
+        console.log('sukses')
+      } else {
+        alert("Failed to delete the customer");
+      }
+    })
+    .catch(error => {
+      console.error("Error deleting the customer: ", error);
+      alert("Failed to delete the customer");
+    });
+    this.setState({
+      confirmationVisible: false,
+      confirmationId: null
+    });
+}
+
+onCancelDelete = () => {
+  this.setState({
+    confirmationVisible: false,
+    confirmationId: null
+  });
+}
+
   render() {
-    const columns = [
-      {
-        name: "ID",
-        selector: "idPelanggan",
-        sortable: true,
-        width: "80px"
-      },
-      {
-        name: "Nama",
-        selector: "nama",
-        sortable: true,
-      },
-      {
-        name: "No Telp",
-        selector: "noTelp",
-        sortable: true,
-      },
-      {
-        name: "Alamat",
-        selector: "alamat",
-        sortable: true,
-      },
-      {
-        name: "Action",
-        button: true,
-        cell: (row) => {
-            return (
-                <>
-                    <CButton size="sm"  color="warning" shape="rounded-pill" onClick={() => this.props.updateList(row)}>Edit</CButton>
-                    <CButton size="sm" className="ml-md-3" color="danger" shape="rounded-pill"  onClick={(e) => this.props.deletePegawai(row)}>Delete</CButton>
-                </>
+    // const columns = [
+    //   {
+    //     name: "ID",
+    //     selector: "idPelanggan",
+    //     sortable: true,
+    //     width: "80px"
+    //   },
+    //   {
+    //     name: "Nama",
+    //     selector: "nama",
+    //     sortable: true,
+    //   },
+    //   {
+    //     name: "No Telp",
+    //     selector: "noTelp",
+    //     sortable: true,
+    //   },
+    //   {
+    //     name: "Alamat",
+    //     selector: "alamat",
+    //     sortable: true,
+    //   },
+    //   {
+    //     name: "Action",
+    //     button: true,
+    //     cell: (row) => {
+    //         return (
+    //             <>
+    //                 <CButton size="sm"  color="warning" shape="rounded-pill" onClick={() => this.props.updateList(row)}>Edit</CButton>
+    //                 <CButton size="sm" className="ml-md-3" color="danger" shape="rounded-pill"  onClick={(e) => this.props.deletePegawai(row)}>Delete</CButton>
+    //             </>
 
-            );
-        },
-      },
-    ];
-
+    //         );
+    //     },
+    //   },
+    // ];
+      const { confirmationVisible } = this.state;
       return (
         // <ListPelanggan listPelanggan={this.state.listPelanggan}
         // // updateList={this.updateList}
@@ -168,7 +218,9 @@ class mstPlg extends Component {
         // />
         <>
         <Card>
+          <Link to='/tlpadm/mst_plg/AddPelanggan'>
           <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" style={{display: 'flex', justifyContent: 'flex-end'}} />
+          </Link>
             <DataTable stripedRows header="Data Pelanggan" value={this.state.listPelanggan} tableStyle={{ minWidth: '50rem' }}
             paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
             filterDisplay="row"
@@ -188,8 +240,11 @@ class mstPlg extends Component {
                     <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
                             onClick={(e) => {
                                 console.log("row idx: " + data.idPelanggan);
+                                this.onDelete(data.idPelanggan);
                             }
                         }/>
+                    <ConfirmDialog header="Confirmation" visible={confirmationVisible} onHide={this.onCancelDelete} message="Are you sure you want to delete this data?" icon="pi pi-exclamation-triangle" accept={this.onConfirmDelete} reject={this.onCancelDelete} />
+
                 </div>
             }>
             </Column>
