@@ -6,6 +6,10 @@ import { url } from '../../../Constanta';
 // import SearchEmployee from './SearchEmployee';
 import { connect } from "react-redux";
 import ListTrnasabah from './ListTrnasabah';
+import { Button } from 'primereact/button';
+import { Link } from "react-router-dom";
+import InputNasabah from './InputNasabah';
+
 
 class trnasabah extends Component {
   constructor(props) {
@@ -13,11 +17,15 @@ class trnasabah extends Component {
     this.state = {
       trnasabah:
       {
+        idTransaksiNasabah: '',
         norek: '',
+        norekDituju: '',
         nama: '',
-        alamat: '',
         noTelp: '',
-        saldo: '',
+        uang: '',
+        status: '',
+        statusKet: '',
+        tanggal: '',
       },
       listTrnasabah: [],
       size: 10,
@@ -29,8 +37,8 @@ class trnasabah extends Component {
       // listJobs: [],
       // ket: 'Tambah'
     };
-    // this.ubahFieldPegawai = this.ubahFieldPegawai.bind(this);
-    // this.addListPegawai = this.addListPegawai.bind(this);
+    // this.ubahFieldNasabah = this.ubahFieldNasabah.bind(this);
+    // this.addListNasabah = this.addListNasabah.bind(this);
     // this.updateList = this.updateList.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handlePerRowsChange = this.handlePerRowsChange.bind(this);
@@ -59,7 +67,7 @@ class trnasabah extends Component {
           () => {
             this.setState(
               (prevState) => ({
-                totalData: Emp.data.total_Data,
+                totalData: Emp.data.total_data,
               })
             );
 
@@ -92,7 +100,7 @@ class trnasabah extends Component {
     let value = queryParams.get("value")
     let page = queryParams.get("page")
 
-    if (size == null) size = 5;
+    if (size == null) size = 10;
 
     if (page === null) {
       page = 1
@@ -107,106 +115,105 @@ class trnasabah extends Component {
     // this.listJobOption();
   }
 
-  // ubahFieldPegawai(e) {
-  //   this.setState((prevState) => ({
-  //     pegawai: {
-  //       ...prevState.pegawai, [e.target.name]: e.target.value,
-  //     }
-  //   }), () => {
-  //     console.log('pegawai', this.state.pegawai);
-  //   });
-  // }
+  ubahFieldNasabah(e) {
+    this.setState((prevState) => ({
+      trnasabah: {
+        ...prevState.trnasabah, [e.target.name]: e.target.value,
+      }
+    }), () => {
+    });
+  }
 
-  // updateList(paramPegawai) {
-  //   this.props.dispatchPegawai(paramPegawai)
-  //   console.log('b', paramPegawai);
-  //   this.setState({
-  //     pegawai: paramPegawai,
-  //     ket: 'Edit',
-  //   })
+  updateList(paramPegawai) {
+    this.props.dispatchPegawai(paramPegawai)
+    console.log('b', paramPegawai);
+    this.setState({
+      pegawai: paramPegawai,
+      ket: 'Edit',
+    })
 
-  // }
+  }
 
-  // addListPegawai(s) {
-  //   s.preventDefault();
-  //   // s.preventDefault();
-  //   let {
-  //     EMPLOYEE_ID,
-  //     FIRST_NAME,
-  //     LAST_NAME,
-  //     EMAIL,
-  //     PHONE_NUMBER,
-  //     HIRE_DATE,
-  //     JOB_ID,
-  //     SALARY,
-  //     COMMISSION_PCT,
-  //     MANAGER_ID,
-  //     DEPARTMENT_ID,
-  //   } = this.state.pegawai;
+  addListNasabah(s) {
+    s.preventDefault();
+    // s.preventDefault();
+    let {
+      EMPLOYEE_ID,
+      FIRST_NAME,
+      LAST_NAME,
+      EMAIL,
+      PHONE_NUMBER,
+      HIRE_DATE,
+      JOB_ID,
+      SALARY,
+      COMMISSION_PCT,
+      MANAGER_ID,
+      DEPARTMENT_ID,
+    } = this.state.trnasabah;
 
-  //   let ket = this.state.ket;
+    let ket = this.state.ket;
 
-  //   // const { onSimpan } = this.props
-  //   let urlSubmit = `${url}/api/employees/insertEmployee`;
-  //   var parmethod = "post"
-  //   if (ket != "Tambah") {
-  //     parmethod = "put"
-  //     urlSubmit = url + '/api/employees/updateEmployee';
-  //   }
-  //   fetch(`${urlSubmit}`, {
-  //     method: parmethod,
-  //     body: JSON.stringify({
-  //       EMPLOYEE_ID: EMPLOYEE_ID,
-  //       FIRST_NAME: FIRST_NAME,
-  //       LAST_NAME: LAST_NAME,
-  //       EMAIL: EMAIL,
-  //       PHONE_NUMBER: PHONE_NUMBER,
-  //       HIRE_DATE: HIRE_DATE,
-  //       JOB_ID: JOB_ID,
-  //       SALARY: SALARY,
-  //       COMMISSION_PCT: COMMISSION_PCT,
-  //       MANAGER_ID: MANAGER_ID,
-  //       DEPARTMENT_ID: DEPARTMENT_ID,
-  //     }),
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8"
-  //     }
-  //   })
-  //     .then(response => {
-  //       response.json()
-  //       if (ket != "Tambah") {
-  //         alert("Data berhasil di update");
-  //       } else {
-  //         alert("Data berhasil di Tambah");
-  //       }
-  //       // onSimpan(true)
+    // const { onSimpan } = this.props
+    let urlSubmit = `${url}/api/employees/insertEmployee`;
+    var parmethod = "post"
+    if (ket != "Tambah") {
+      parmethod = "put"
+      urlSubmit = url + '/api/employees/updateEmployee';
+    }
+    fetch(`${urlSubmit}`, {
+      method: parmethod,
+      body: JSON.stringify({
+        EMPLOYEE_ID: EMPLOYEE_ID,
+        FIRST_NAME: FIRST_NAME,
+        LAST_NAME: LAST_NAME,
+        EMAIL: EMAIL,
+        PHONE_NUMBER: PHONE_NUMBER,
+        HIRE_DATE: HIRE_DATE,
+        JOB_ID: JOB_ID,
+        SALARY: SALARY,
+        COMMISSION_PCT: COMMISSION_PCT,
+        MANAGER_ID: MANAGER_ID,
+        DEPARTMENT_ID: DEPARTMENT_ID,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(response => {
+        response.json()
+        if (ket != "Tambah") {
+          alert("Data berhasil di update");
+        } else {
+          alert("Data berhasil di Tambah");
+        }
+        // onSimpan(true)
 
-  //       this.setState(prevState => ({
-  //         pegawai: {
-  //           EMPLOYEE_ID: '',
-  //           FIRST_NAME: '',
-  //           LAST_NAME: '',
-  //           EMAIL: '',
-  //           PHONE_NUMBER: '',
-  //           HIRE_DATE: '',
-  //           JOB_ID: '',
-  //           SALARY: '',
-  //           COMMISSION_PCT: '',
-  //           MANAGER_ID: '',
-  //           DEPARTMENT_ID: '',
-  //         },
-  //         ket: 'Tambah'
-  //       }))
-  //       this.listPegawaiDb(this.state.field, this.state.value, this.state.page, this.state.size);
-
+        this.setState(prevState => ({
+          pegawai: {
+            EMPLOYEE_ID: '',
+            FIRST_NAME: '',
+            LAST_NAME: '',
+            EMAIL: '',
+            PHONE_NUMBER: '',
+            HIRE_DATE: '',
+            JOB_ID: '',
+            SALARY: '',
+            COMMISSION_PCT: '',
+            MANAGER_ID: '',
+            DEPARTMENT_ID: '',
+          },
+          ket: 'Tambah'
+        }))
+        this.listPegawaiDb(this.state.field, this.state.value, this.state.page, this.state.size);
 
 
-  //     })
-  //     .then(json => {
-  //       // onSimpan(true)
-  //     })
 
-  // }
+      })
+      .then(json => {
+        // onSimpan(true)
+      })
+
+  }
 
   handlePageChange(page) {
     //    this.props.dispatchPage(page)
@@ -306,12 +313,21 @@ class trnasabah extends Component {
       <div className="App">
         <label><strong>Data Transaksi Nasabah</strong></label><br />
         <div>
-          {/* <InputEmployee pegawai={this.state.pegawai}
-            ubahFieldPegawai={this.ubahFieldPegawai}
-            addListPegawai={this.addListPegawai}
-          // listDept={this.state.listDept}
-          // listJobs={this.state.listJobs}
-          /> */}
+          <Link to='/bnkadm/trksinasabah/InputNasabah'>
+            <Button className='mb-2' label="Tambah Nasabah" icon="pi pi-plus" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} />
+          </Link>
+          {/* <InputNasabah
+            trnasabah={this.state.trnasabah}
+            ubahFieldNasabah={this.ubahFieldNasabah}
+            addListNasabah={this.addListNasabah}>
+          </InputNasabah> */}
+
+          {/* <Link to='/bnkadm/trksinasabah/InputNasabah'
+            trnasabah={this.state.trnasabah}
+            ubahFieldNasabah={this.ubahFieldNasabah}
+            addListNasabah={this.addListNasabah}>
+            <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} />
+          </Link> */}
           <br />
           {/* <SearchEmployee
             handleInputSearch={this.handleInputSearch}
@@ -321,8 +337,6 @@ class trnasabah extends Component {
           >
           </SearchEmployee> */}
         </div>
-        <br />
-
         <div>
           <ListTrnasabah
             listTrnasabah={this.state.listTrnasabah}

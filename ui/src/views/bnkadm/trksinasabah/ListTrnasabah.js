@@ -1,5 +1,4 @@
-import './App.css';
-import './style.css';
+
 import React, { Component } from 'react';
 import DataTable, {
     createTheme,
@@ -14,10 +13,10 @@ class ListTrnasabah extends Component {
 
     render() {
         const columns = [
-            // {
-            //     name: "Employee Id",
-            //     selector: "ID_TRANSAKSI_NASABAH",
-            // },
+            {
+                name: "ID",
+                selector: "idTransaksiNasabah",
+            },
             {
                 name: "Norek",
                 selector: "norek",
@@ -88,7 +87,7 @@ class ListTrnasabah extends Component {
                     selectableRows
                     pagination
                     paginationServer
-                    paginationTotalRows={this.props.total_data}
+                    paginationTotalRows={this.props.totalData}
                     paginationPerPage={this.props.size}
 
                     onChangePage={(page) => this.props.handlePageChange(page)}

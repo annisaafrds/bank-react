@@ -18,6 +18,8 @@ const BayarTelepon = React.lazy(() => import('./views/nasabah/bayar-telepon/baya
 const HistorySetor = React.lazy(() => import('./views/bnkadm/history-transaksi/history-setor/historySetor.js'))
 const HistoryTransfer = React.lazy(() => import('./views/bnkadm/history-transaksi/transfer/transfer.js'))
 const HistoryTelp = React.lazy(() => import('./views/bnkadm/history-transaksi/bayar-telepon/telp.js'))
+const InputNasabah = React.lazy(() => import('./views/bnkadm/trksinasabah/InputNasabah.js'))
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 
 
@@ -44,6 +46,7 @@ const routes = [
   // '/trksi_hist_nsbh/bayartlp'
   // { path: '/bnkadm/bankMaster', name: 'Master Bank', element: MstPlg },
   { path: '/bnkadm/bankMaster/inputBankMaster', name: 'Add Data Bank Master', element: inputBankMaster },
+  { path: '/bnkadm/trksinasabah/InputNasabah', name: 'Tambah Nasabah', element: InputNasabah },
 
 ]
 
