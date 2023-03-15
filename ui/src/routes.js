@@ -14,9 +14,10 @@ const Ambil = React.lazy(() => import('./views/nasabah/ambil/ambil'))
 const HistoryAmbil = React.lazy(() => import('./views/bnkadm/history-transaksi/ambil/ambil.js'))
 const BayarTelepon = React.lazy(() => import('./views/nasabah/bayar-telepon/bayar-telepon'))
 const HistorySetor = React.lazy(() => import('./views/bnkadm/history-transaksi/history-setor/historySetor.js'))
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Home', element: Dashboard },
   { path: '/nsbh/setor', name: 'Setor Tunai', element: Setor },
   { path: '/nsbh/cek', name: 'Cek Saldo', element: Cek },
   { path: '/nsbh/ambil', name: 'Ambil Tunai', element: Ambil },
