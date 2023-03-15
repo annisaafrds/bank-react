@@ -151,14 +151,14 @@ exports.updateTransaksiTelkom = async (req, res) => {
   const tr = await db.sequelize.transaction();
   try {
     var dataTransaksiTelkom = {
-      idTransaksi: req.body.idTransaksi,
+      idTransaksi: req.query.idTransaksi,
       idPelanggan: req.body.idPelanggan,
       bulanTagihan: req.body.bulanTagihan,
       tahunTagihan: req.body.tahunTagihan,
       uang: req.body.uang,
       status: req.body.status,
     };
-    const tempITransaksiTelkom = await transaksiTelkomRepo.updateTransaksiTelkom(req.body.idTransaksi, dataTransaksiTelkom, tr);
+    const tempITransaksiTelkom = await transaksiTelkomRepo.updateTransaksiTelkom(req.query.idTransaksi, dataTransaksiTelkom, tr);
     let message = {
       english: `Successfully Update TRANSAKSI_TELKOM`,
       indonesia: `Berhasil Update TRANSAKSI_TELKOM`,

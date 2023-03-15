@@ -22,10 +22,6 @@ class TransaksiTelkom extends Component {
       confirmationVisible: false, // state to show/hide the confirmation dialog
       confirmationId: null // state to store the id of the customer to delete
     };
-
-
-    this.handlePageChange = this.handlePageChange.bind(this);
-    this.handlePerRowsChange = this.handlePerRowsChange.bind(this);
   }
 
   listTransaksiTelkomDb(field, value, page, size) {
@@ -87,40 +83,6 @@ class TransaksiTelkom extends Component {
 
   }
 
-  handlePageChange(page) {
-    //    this.props.dispatchPage(page)
-    this.setState(prevState => ({
-
-      page: page
-    }))
-    //alert(this.props.dataField)
-    this.listTransaksiTelkomDb(
-      this.state.field,
-      this.state.value,
-      page,
-      this.state.size
-    );
-    //1,this.props.dateSize
-    //fetchData(page, perPage);
-  }
-
-  handlePerRowsChange(size) {
-    //    this.props.dispatchPage(page)
-    this.setState(prevState => ({
-
-      size: size
-    }))
-    // alert(this.props.dataField)
-    this.listTransaksiTelkomDb(
-      this.state.field,
-      this.state.value,
-      this.state.page,
-      size,
-    );
-    //1,this.props.dateSize
-    //fetchData(page, perPage);
-  }
-
   onDelete = (id) => {
     this.setState({
       confirmationVisible: true,
@@ -154,14 +116,14 @@ class TransaksiTelkom extends Component {
       confirmationVisible: false,
       confirmationId: null
     });
-}
+  }
 
-onCancelDelete = () => {
-  this.setState({
-    confirmationVisible: false,
-    confirmationId: null
-  });
-}
+  onCancelDelete = () => {
+    this.setState({
+      confirmationVisible: false,
+      confirmationId: null
+    });
+  }
 
   render() {
       const { confirmationVisible } = this.state;
@@ -186,11 +148,11 @@ onCancelDelete = () => {
                 let color;
                 let sts;
                 if (status == "1") {
-                  color = 'success';
-                  sts = 'Setor';
-                } else if (status == "2") {
                   color = 'warning';
-                  sts = 'Ambil';
+                  sts = 'Belum Lunas';
+                } else if (status == "2") {
+                  color = 'success';
+                  sts = 'Lunas';
                 }
                 return <Button severity={ color } label={sts} size="sm" text/>;
               }}></Column>
