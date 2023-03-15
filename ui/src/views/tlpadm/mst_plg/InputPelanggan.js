@@ -1,81 +1,133 @@
 import React, { Component } from "react";
-import './style.css';
-import DataTable, {
-  createTheme,
-  defaultThemes,
-} from "react-data-table-component";
-import {
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CRow,
-  CTable,
-  CButton,
-} from '@coreui/react'
-import { Card } from 'primereact/card';
-import { Button } from 'primereact/button';
-import {Link } from "react-router-dom";
-
-class InputPelanggan  extends Component{
-    constructor(props) {
-      super(props);
-      this.state = {
-          nama: '',
-          noTelp: '',
-          alamat: ''
-      }
-    }
-
-    handleInputChange = (event) => {
-      const { name, value } = event.target;
-      this.setState({ [name]: value });
-    }
-
-  handleSubmit(e) {
-      e.preventDefault();
-
-      const newPlg = {
-          nama: this.state.nama,
-          noTelp: this.state.noTelp,
-          alamat: this.state.alamat
-      }
-
-      this.setState({
-        newPelanggan: newPlg,
-          listPelanggan: [...this.state.listPelanggan, newPlg]
-      });
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import { Card } from "primereact/card";
+import { url } from '../../../Constanta';
+class InputPelanggan extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      idPelanggan: "",
+      nama: "",
+      noTelp: "",
+      alamat: "",
+      isEdit: false,
+    };
   }
+
+  componentDidMount() {
+    const { location } = this.props;
+    if (location && location.data) {
+      const { idPelanggan, nama, noTelp, alamat } = location.state.data;
+      this.setState({
+        idPelanggan,
+        nama,
+        noTelp,
+        alamat,
+        isEdit: true,
+      });
+    }
+  }
+
+  handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const { idPelanggan, nama, noTelp, alamat, isEdit } = this.state;
+    const edit = isEdit
+      ? `${url}/api/masterpelanggan/update/${idPelanggan}`
+      : `${url}/api/masterpelanggan/save`;
+
+    const method = isEdit ? "PUT" : "POST";
+    const data = { idPelanggan, nama, noTelp, alamat };
+    const response = await fetch(edit, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      // this.props.history.push("/tlpadm/mst_plg");
+      console.log('masuk')
+    } else {
+      console.error("Failed to add or edit customer data");
+    }
+  };
 
   render() {
+    const { idPelanggan, nama, noTelp, alamat, isEdit } = this.state;
+    const buttonText = isEdit ? "Simpan" : "Tambah";
+
     return (
-      <div className='container'>
-        <h3>Tambah Pelanggan</h3>
+      <Card>
         <form onSubmit={this.handleSubmit}>
-          <div className='form-group'>
-            <label htmlFor='nama'>Nama</label>
-            <input type='text' className='form-control' id='nama' value={this.state.nama} onChange={this.handleInputChange} />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='noTelp'>No Telepon</label>
-            <input type='text' className='form-control' id='noTelp' value={this.state.noTelp} onChange={this.handleInputChange} />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='alamat'>Alamat</label>
-            <input type='text' className='form-control' id='alamat' value={this.state.alamat} onChange={this.handleInputChange} />
+          <div className="flex">
+            <div className="field grid">
+              <label className="col-12 mb-2 md:col-2 md:mb-0" style={{marginRight: '2%'}} htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
+              <InputText
+                id="idPelanggan"
+                name="idPelanggan"
+                value={idPelanggan}
+                onChange={this.handleInputChange}
+                required
+                aria-describedby="idPelanggan-help"
+                type="text"
+                className="col-12 md:col-10"
+              />
+              {/* <small id="idPelanggan-help">
+                ID Required.
+              </small> */}
+            </div>
+            <br/>
+            <div className="p-field">
+              <label htmlFor="nama">Nama</label>
+              <InputText
+                id="nama"
+                name="nama"
+                value={nama}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+            <br/>
+            <div className="p-field">
+              <label htmlFor="noTelp">No Telepon</label>
+              <InputText
+                id="noTelp"
+                name="noTelp"
+                value={noTelp}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+            <br/>
+            <div className="p-field">
+              <label htmlFor="alamat">Alamat</label>
+              <InputText
+                id="alamat"
+                name="alamat"
+                value={alamat}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
           </div>
 
-          <div className="mt-3">
-            <Button className="button-save" type='submit' label="Save" severity="primary" onClick={(e) => this.handleSubmit(e)} />
-            <Link to='/tlpadm/mst_plg'>
-              <Button label="Batal" severity="secondary" />
-            </Link>
-          </div>
-
+          <Button label={buttonText} type="submit" />
         </form>
-      </div>
-    )
+      </Card>
+    );
   }
 }
-export default InputPelanggan;
 
+export default InputPelanggan;
