@@ -1,5 +1,6 @@
 import React from 'react'
 
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const MstPlg = React.lazy(() => import('./views/tlpadm/mst_plg/mst_plg'))
 const InputPelanggan = React.lazy(() => import('./views/tlpadm/mst_plg/InputPelanggan'))
 const inputBankMaster = React.lazy(() => import('./views/bnkadm/bankMaster/inputBankMaster'))

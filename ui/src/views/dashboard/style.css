@@ -1,0 +1,29 @@
+.hero-group {
+  margin-top: 20px;
+}
+
+.hero {
+  color: white;
+  font-family: 'Poppins';
+  font-weight: 700;
+
+}
+
+.subhero {
+  color: white;
+}
+
+.hero-body {
+  background: rgba(255, 255, 255, 0);
+}
+
+.img-hero{
+  height: auto;
+}
+
+.hero-image {
+  /* width: 80%; */
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
