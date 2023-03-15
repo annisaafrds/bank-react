@@ -12,12 +12,6 @@ class TransaksiTelkom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pelanggan: {
-        idPelanggan: '',
-        name: '',
-        noTelp: '',
-        alamat: '',
-      },
       listTransaksiTelkom: [],
       size: 10,
       page: 1,
@@ -143,7 +137,7 @@ class TransaksiTelkom extends Component {
     .then(response => {
       if (response.ok) {
         // remove the deleted customer from the list
-        const updatedList = this.state.listTransaksiTelkom.filter(item => item.idPelanggan !== confirmationId);
+        const updatedList = this.state.listTransaksiTelkom.filter(item => item.idTransaksi !== confirmationId);
         this.setState({
           listTransaksiTelkom: updatedList
         });
@@ -177,7 +171,7 @@ onCancelDelete = () => {
           <Link to='/tlpadm/trksi_tlkm/inputTransaksiTelkom'>
           <Button className='mb-2' label="Tambah Transaksi Telkom" icon="pi pi-plus" size="sm" style={{display: 'flex', justifyContent: 'flex-end'}} />
           </Link>
-            <DataTable stripedRows header="Data Pelanggan" value={this.state.listTransaksiTelkom} tableStyle={{ minWidth: '50rem' }}
+            <DataTable stripedRows header="Data Transaksi Telkom" value={this.state.listTransaksiTelkom} tableStyle={{ minWidth: '50rem' }}
             paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
             filterDisplay="row"
             globalFilterFields={['nama', 'bulanTagihan', 'tahunTagihan', 'uang', 'status']}
