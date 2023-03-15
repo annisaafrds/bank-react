@@ -46,7 +46,7 @@ function transaksiTelkomRepository(db) {
         order :[
          'idTransaksi'
         ],
-        limit, 
+        // limit, 
         offset,
         raw : true,
              nest : true,

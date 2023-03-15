@@ -2,6 +2,7 @@ import React from 'react'
 
 const MstPlg = React.lazy(() => import('./views/tlpadm/mst_plg/mst_plg'))
 const InputPelanggan = React.lazy(() => import('./views/tlpadm/mst_plg/InputPelanggan'))
+const InputTransaksiTelkom = React.lazy(() => import('./views/tlpadm/trtelkom/InputTransaksiTelkom'))
 const Setor = React.lazy(() => import('./views/nasabah/setor-tunai/Setor'))
 const Cek = React.lazy(() => import('./views/nasabah/cek-saldo/cek-saldo'))
 const bankMaster = React.lazy(() => import('./views/bnkadm/bankMaster/bankMaster.js'))
@@ -26,6 +27,7 @@ const routes = [
   { path: '/bnk_adm/trksi_nsbh', name: 'Transaksi Nasabah', element: Trnasabah },
   { path: '/nsbh/transfer', name: 'Transfer', element: Transfer },
   { path: '/tlpadm/trksi_tlkm', name: 'Transaksi Telkom', element: TransaksiTelkom },
+  { path: '/tlpadm/trksi_tlkm/inputTransaksiTelkom', name: 'Tambah Transaksi Telkom', element: InputTransaksiTelkom },
   { path: '/tlpadm/hist_trksi', name: 'History Telkom', element: HistoryTelkom },
   { path: '/trksi_hist_nsbh', name: 'trksi_hist_nsbh', element: Ambil, exact: true },
   { path: '/trksi_hist_nsbh/ambil', name: 'Ambil', element: HistoryAmbil },
