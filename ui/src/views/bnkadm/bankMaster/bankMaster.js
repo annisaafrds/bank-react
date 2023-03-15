@@ -223,11 +223,11 @@ onCancelDelete = () => {
             filterDisplay="row"
             globalFilterFields={['norek', 'nama',  'alamat','noTelp','saldo']}
             emptyMessage="No customers found.">
-              <Column field="norek" header="norek" sortable style={{ minWidth: '2rem' }}></Column>
+              <Column field="norek" header="No Rekening" sortable style={{ minWidth: '2rem' }}></Column>
               <Column field="nama" header="Nama" sortable ></Column>
               <Column field="alamat" header="Alamat" sortable ></Column>
               <Column field="noTelp" header="No Telepon" sortable ></Column>
-              <Column field="saldo" header="saldo" sortable ></Column>
+              <Column field="saldo" header="Saldo Rekening" sortable ></Column>
 
               <Column header="Actions" body={(data, state) =>
                 <div>
