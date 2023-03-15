@@ -16,7 +16,7 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import {Link } from "react-router-dom";
 
-class AddPelanggan  extends Component{
+class InputPelanggan  extends Component{
     constructor(props) {
       super(props);
       this.state = {
@@ -72,5 +72,5 @@ class AddPelanggan  extends Component{
     )
   }
 }
-export default AddPelanggan;
+export default InputPelanggan;
 

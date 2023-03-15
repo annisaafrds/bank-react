@@ -218,7 +218,7 @@ onCancelDelete = () => {
         // />
         <>
         <Card>
-          <Link to='/tlpadm/mst_plg/AddPelanggan'>
+          <Link to='/tlpadm/mst_plg/InputPelanggan'>
           <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" style={{display: 'flex', justifyContent: 'flex-end'}} />
           </Link>
             <DataTable stripedRows header="Data Pelanggan" value={this.state.listPelanggan} tableStyle={{ minWidth: '50rem' }}
@@ -229,7 +229,7 @@ onCancelDelete = () => {
               <Column field="idPelanggan" header="ID" sortable style={{ minWidth: '2rem' }}></Column>
               <Column field="nama" header="Nama" sortable ></Column>
               <Column field="noTelp" header="No Telepon" sortable ></Column>
-              <Column field="alamat" header="alamat" sortable ></Column>
+              <Column field="alamat" header="Alamat" sortable ></Column>
               <Column header="Actions" body={(data, state) =>
                 <div>
                     <Button icon="pi pi-pencil" className="p-button-rounded p-button-text"
