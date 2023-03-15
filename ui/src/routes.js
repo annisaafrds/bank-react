@@ -19,8 +19,6 @@ const HistorySetor = React.lazy(() => import('./views/bnkadm/history-transaksi/h
 const HistoryTransfer = React.lazy(() => import('./views/bnkadm/history-transaksi/transfer/transfer.js'))
 const HistoryTelp = React.lazy(() => import('./views/bnkadm/history-transaksi/bayar-telepon/telp.js'))
 const InputNasabah = React.lazy(() => import('./views/bnkadm/trksinasabah/InputNasabah.js'))
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
-
 
 
 
