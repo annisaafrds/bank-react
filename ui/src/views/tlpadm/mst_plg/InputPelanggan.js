@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './style.css';
 import DataTable, {
   createTheme,
   defaultThemes,
@@ -63,10 +64,14 @@ class InputPelanggan  extends Component{
             <label htmlFor='alamat'>Alamat</label>
             <input type='text' className='form-control' id='alamat' value={this.state.alamat} onChange={this.handleInputChange} />
           </div>
-          <button type='submit' className='btn btn-primary' onClick={(e) => this.handleSubmit(e)}>Submit</button>
-          <Link to='/tlpadm/mst_plg'>
-            <Button label="Batal" className="p-button-secondary" />
-          </Link>
+
+          <div className="mt-3">
+            <Button className="button-save" type='submit' label="Save" severity="primary" onClick={(e) => this.handleSubmit(e)} />
+            <Link to='/tlpadm/mst_plg'>
+              <Button label="Batal" severity="secondary" />
+            </Link>
+          </div>
+
         </form>
       </div>
     )
