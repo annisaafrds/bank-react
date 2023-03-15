@@ -71,9 +71,8 @@ class InputPelanggan extends Component {
     return (
       <Card>
         <form onSubmit={this.handleSubmit}>
-          <div className="flex">
             <div className="field grid">
-              <label className="col-12 mb-2 md:col-2 md:mb-0" style={{marginRight: '2%'}} htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
+              <label className="col-12 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
               <InputText
                 id="idPelanggan"
                 name="idPelanggan"
@@ -82,11 +81,9 @@ class InputPelanggan extends Component {
                 required
                 aria-describedby="idPelanggan-help"
                 type="text"
-                className="col-12 md:col-10"
+                className="col-12 md:col-10 w-1"
+                style={{ width: '10%'}}
               />
-              {/* <small id="idPelanggan-help">
-                ID Required.
-              </small> */}
             </div>
             <br/>
             <div className="p-field">
@@ -121,7 +118,6 @@ class InputPelanggan extends Component {
                 required
               />
             </div>
-          </div>
 
           <Button label={buttonText} type="submit" />
         </form>
