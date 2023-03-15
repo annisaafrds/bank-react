@@ -43,24 +43,24 @@ class TransaksiTelkom extends Component {
   //alert(`${url}/api/employees/getEmployee?${fetchUrl}`);
   fetch(`http://localhost:3535/api/transaksi-telkom?${fetchUrl}`)
     .then((response) => response.json())
-    .then((Plg) => {
+    .then((tr) => {
 
 
 
        this.setState(
          (prevState) => ({
-           listTransaksiTelkom: Plg.data.data,
+           listTransaksiTelkom: tr.data.data,
          }),
          () => {
           this.setState(
             (prevState) => ({
-              totalData: Plg.data.total_data,
+              totalData: tr.data.total_data,
             })
           );
 
           this.setState(
             (prevState) => ({
-              size: Plg.data.total_page,
+              size: tr.data.total_page,
             })
           );
          }
@@ -137,7 +137,7 @@ class TransaksiTelkom extends Component {
   onConfirmDelete = () => {
     const { confirmationId } = this.state;
 
-    fetch(`${url}/api/transaksi-telkom/delete?idPelanggan=${confirmationId}`, {
+    fetch(`${url}/api/transaksi-telkom/delete?idTransaksi=${confirmationId}`, {
       method: 'DELETE'
     })
     .then(response => {
