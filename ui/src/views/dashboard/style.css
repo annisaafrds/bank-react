@@ -1,5 +1,6 @@
 .hero-group {
   margin-top: 20px;
+  position: absolute;
 }
 
 .hero {
@@ -19,6 +20,7 @@
 
 .img-hero{
   height: auto;
+  position: relative;
 }
 
 .hero-image {

@@ -15,7 +15,7 @@ const Dashboard = () => {
     <>
       <body className="hero-body">
         <div className="row">
-          <div className="hero-group relative">
+          <div className="hero-group absolute">
             <h1 className="hero">SELAMAT DATANG DI BANK <span>XYZ</span></h1>
             <h6 className="subhero">Kepuasan nasabah adalah prioritas kami</h6>
           </div>

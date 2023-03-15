@@ -7,7 +7,7 @@ import { Button } from 'primereact/button';
 import {Link } from "react-router-dom";
 import { url } from '../../../Constanta';
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
-
+import { InputText } from 'primereact/inputtext';
 class mstPlg extends Component {
 
   constructor(props) {
@@ -25,6 +25,7 @@ class mstPlg extends Component {
       field:'',
       value:'',
       totalData:0,
+      searchQuery: '',
 
       confirmationVisible: false, // state to show/hide the confirmation dialog
       confirmationId: null // state to store the id of the customer to delete
@@ -92,6 +93,10 @@ class mstPlg extends Component {
 
     this.listPelangganDb(field, value, page, size);
 
+  }
+
+  handleSearch = (e) => {
+    this.setState({ searchQuery: e.target.value });
   }
 
   handlePageChange(page) {
@@ -208,16 +213,22 @@ onCancelDelete = () => {
     //   },
     // ];
       const { confirmationVisible } = this.state;
+      const filteredPelanggan = this.state.listPelanggan.filter(plg =>
+        plg.idPelanggan.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
+        plg.nama.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
+        plg.noTelp.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
+        plg.alamat.toLowerCase().includes(this.state.searchQuery.toLowerCase())
+      );
+
       return (
-        // <ListPelanggan listPelanggan={this.state.listPelanggan}
-        // // updateList={this.updateList}
-        // handlePageChange={this.handlePageChange}
-        // handlePerRowsChange={this.handlePerRowsChange}
-        // countPerPage={this.state.total_page}
-        // totalData={this.state.size}
-        // />
         <>
         <Card>
+        <div className="p-fluid p-formgrid p-grid">
+          <div className="p-field p-col-12 p-md-6">
+            <label htmlFor="search">Search</label>
+            <InputText id="search" value={this.state.searchQuery} onChange={this.handleSearch} />
+          </div>
+        </div>
           <Link to='/tlpadm/mst_plg/InputPelanggan'>
           <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" style={{display: 'flex', justifyContent: 'flex-end'}} />
           </Link>
@@ -232,11 +243,14 @@ onCancelDelete = () => {
               <Column field="alamat" header="Alamat" sortable ></Column>
               <Column header="Actions" body={(data, state) =>
                 <div>
+                  <Link to='/tlpadm/mst_plg/InputPelanggan'>
+
                     <Button icon="pi pi-pencil" className="p-button-rounded p-button-text"
-                            onClick={(e) => {
-                                console.log("row idx: " + data.idPelanggan);
-                            }
-                        }/>
+                            // onClick={(e) => {
+                            //     console.log("row idx: " + data.idPelanggan);
+                            // }}
+                            />
+                  </Link>
                     <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
                             onClick={(e) => {
                                 console.log("row idx: " + data.idPelanggan);
