@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import ListPelanggan from './ListPelanggan';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import {Link } from "react-router-dom";
@@ -36,19 +35,19 @@ class mstPlg extends Component {
     this.handlePerRowsChange = this.handlePerRowsChange.bind(this);
   }
 
-  listPelangganDb(field, value, page, size) {
+  listPelangganDb(field, value, page, size, searchQuery) {
     var fetchUrl =
     field === null || value === null
-      ? `page=${page}&size=${size}`
-      : `field=${field}&value=${value}&page=${page}&size=${size}`;
-  // alert(`${url}/api/emp/getEmp?${fetchUrl}`);
-  //alert(`${url}/api/employees/getEmployee?${fetchUrl}`);
-  fetch(`http://localhost:3535/api/masterpelanggan/getMasterPelanggan?${fetchUrl}`)
+    ? `page=${page}&size=${size}`
+    : `field=${field}&value=${value}&page=${page}&size=${size}`;
+
+    if (searchQuery !== '') {
+      fetchUrl += `&searchQuery=${searchQuery}`;
+    }
+
+  fetch(`${url}/api/masterpelanggan/getMasterPelanggan?${fetchUrl}`)
     .then((response) => response.json())
     .then((Plg) => {
-
-
-
        this.setState(
          (prevState) => ({
            listPelanggan: Plg.data.data,
@@ -95,8 +94,17 @@ class mstPlg extends Component {
 
   }
 
-  handleSearch = (e) => {
-    this.setState({ searchQuery: e.target.value });
+  handleSearch = (event) => {
+    const searchQuery = event.target.value;
+    this.setState({ searchQuery });
+
+    this.listPelangganDb(
+      this.state.field,
+      this.state.value,
+      this.state.page,
+      this.state.size,
+      searchQuery
+    );
   }
 
   handlePageChange(page) {
@@ -176,67 +184,29 @@ onCancelDelete = () => {
 }
 
   render() {
-    // const columns = [
-    //   {
-    //     name: "ID",
-    //     selector: "idPelanggan",
-    //     sortable: true,
-    //     width: "80px"
-    //   },
-    //   {
-    //     name: "Nama",
-    //     selector: "nama",
-    //     sortable: true,
-    //   },
-    //   {
-    //     name: "No Telp",
-    //     selector: "noTelp",
-    //     sortable: true,
-    //   },
-    //   {
-    //     name: "Alamat",
-    //     selector: "alamat",
-    //     sortable: true,
-    //   },
-    //   {
-    //     name: "Action",
-    //     button: true,
-    //     cell: (row) => {
-    //         return (
-    //             <>
-    //                 <CButton size="sm"  color="warning" shape="rounded-pill" onClick={() => this.props.updateList(row)}>Edit</CButton>
-    //                 <CButton size="sm" className="ml-md-3" color="danger" shape="rounded-pill"  onClick={(e) => this.props.deletePegawai(row)}>Delete</CButton>
-    //             </>
-
-    //         );
-    //     },
-    //   },
-    // ];
       const { confirmationVisible } = this.state;
-      const filteredPelanggan = this.state.listPelanggan.filter(plg =>
-        plg.idPelanggan.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
-        plg.nama.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
-        plg.noTelp.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
-        plg.alamat.toLowerCase().includes(this.state.searchQuery.toLowerCase())
-      );
 
       return (
         <>
-        <Card>
-        <div className="p-fluid p-formgrid p-grid">
-          <div className="p-field p-col-12 p-md-6">
-            <label htmlFor="search">Search</label>
-            <InputText id="search" value={this.state.searchQuery} onChange={this.handleSearch} />
-          </div>
-        </div>
-          <Link to='/tlpadm/mst_plg/InputPelanggan'>
-          <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" style={{display: 'flex', justifyContent: 'flex-end'}} />
-          </Link>
+          <Card>
+            <div className="grid">
+              <div className="col-6">
+                <Link to='/tlpadm/mst_plg/InputPelanggan'>
+                  <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" />
+                </Link>
+              </div>
+              <div className="col-6">
+                <span className="p-input-icon-left">
+                  <i className="pi pi-search" />
+                <InputText type="search" value={this.state.searchQuery} onChange={this.handleSearch} />
+                </span>
+              </div>
+            </div>
             <DataTable stripedRows header="Data Pelanggan" value={this.state.listPelanggan} tableStyle={{ minWidth: '50rem' }}
-            paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
-            filterDisplay="row"
-            globalFilterFields={['idPelanggan', 'nama', 'noTelp', 'alamat']}
-            emptyMessage="No customers found.">
+              paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
+              filterDisplay="row"
+              globalFilter={this.state.searchQuery}
+              emptyMessage="No customers found.">
               <Column field="idPelanggan" header="ID" sortable style={{ minWidth: '2rem' }}></Column>
               <Column field="nama" header="Nama" sortable ></Column>
               <Column field="noTelp" header="No Telepon" sortable ></Column>
@@ -246,24 +216,24 @@ onCancelDelete = () => {
                   <Link to='/tlpadm/mst_plg/InputPelanggan'>
 
                     <Button icon="pi pi-pencil" className="p-button-rounded p-button-text"
-                            // onClick={(e) => {
-                            //     console.log("row idx: " + data.idPelanggan);
-                            // }}
-                            />
+                    // onClick={(e) => {
+                    //     console.log("row idx: " + data.idPelanggan);
+                    // }}
+                    />
                   </Link>
-                    <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
-                            onClick={(e) => {
-                                console.log("row idx: " + data.idPelanggan);
-                                this.onDelete(data.idPelanggan);
-                            }
-                        }/>
-                    <ConfirmDialog header="Confirmation" visible={confirmationVisible} onHide={this.onCancelDelete} message="Are you sure you want to delete this data?" icon="pi pi-exclamation-triangle" accept={this.onConfirmDelete} reject={this.onCancelDelete} />
+                  <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
+                    onClick={(e) => {
+                      console.log("row idx: " + data.idPelanggan);
+                      this.onDelete(data.idPelanggan);
+                    }
+                    } />
+                  <ConfirmDialog header="Confirmation" visible={confirmationVisible} onHide={this.onCancelDelete} message="Are you sure you want to delete this data?" icon="pi pi-exclamation-triangle" accept={this.onConfirmDelete} reject={this.onCancelDelete} />
 
                 </div>
-            }>
-            </Column>
+              }>
+              </Column>
             </DataTable>
-        </Card>
+          </Card>
         </>
       );
   }

@@ -7,6 +7,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 //icons
 import "primeicons/primeicons.css";
+import "primeflex/primeflex.css";
 
 const loading = (
   <div className="pt-3 text-center">

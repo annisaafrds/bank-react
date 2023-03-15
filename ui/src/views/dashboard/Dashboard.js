@@ -12,21 +12,20 @@ import './style.css'
 const Dashboard = () => {
 
   return (
-    <>
-      <body className="hero-body">
-        <div className="row">
-          <div className="hero-group absolute">
-            <h1 className="hero">SELAMAT DATANG DI BANK <span>XYZ</span></h1>
-            <h6 className="subhero">Kepuasan nasabah adalah prioritas kami</h6>
-          </div>
-          <div className='hero-image'>
-            <div>
-              <Image src={dashboard} alt="" className="img-hero absolute bg-center w-max" />
-            </div>
-          </div>
+    <body>
+      <div className="grid grid-nogutter surface-0 text-800">
+        <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+          <section>
+            <span className="block text-6xl font-bold mb-1">Welcome to <span className="text-6xl text-primary font-bold mb-3">Bank Ogya</span></span>
+            <p className="mt-0 mb-4 text-700 line-height-3">apa ya, gatau dah.</p>
+          </section>
         </div>
-      </body>
-    </>
+        <div className="col-12 md:col-6 overflow-hidden">
+          <img src={dashboard} alt="hero-1" className="md:ml-auto block md:h-screen" style={{ clipPath: 'polygon(8% 0, 100% 0%, 100% 100%, 0 100%)' }} />
+        </div>
+      </div>
+    </body>
+
   )
 }
 
