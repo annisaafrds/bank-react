@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const usersDB = sequelize.define("USERSDB", {
-        user_id :  {
+        userId :  {
             field: 'USER_ID',
             //autoIncrement: true,
             primaryKey: true,
@@ -76,8 +76,9 @@ module.exports = (sequelize, Sequelize) => {
       })
 //    });
     usersDB.associate = function(models) {
-        usersDB.hasMany(models.hakaksessDB, {foreignKey: 'user_id',sourceKey: 'user_id'})
-        usersDB.hasMany(models.mstBankDB, {foreignKey: 'user_id',sourceKey: 'user_id'})
+        usersDB.hasMany(models.hakaksessDB, {foreignKey: 'userId',sourceKey: 'userId'})
+        usersDB.hasMany(models.mstBankDB, {foreignKey: 'userId',sourceKey: 'userId'})
+        usersDB.hasMany(models.masterpelangganDB, {foreignKey: 'userId',sourceKey: 'userId'})
       };
     
     return usersDB;

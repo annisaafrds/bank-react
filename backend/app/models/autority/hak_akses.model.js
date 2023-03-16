@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DECIMAL(11, 0)
 
         },
-        user_id:  {
+        userId:  {
             field: 'USER_ID',
              //primaryKey: true,
             type: Sequelize.DECIMAL(11, 0)
@@ -57,7 +57,7 @@ module.exports = (sequelize, Sequelize) => {
         tableName: 'HAK_AKSES'
     })
     hakaksessDB.associate = function(models) {
-        hakaksessDB.belongsTo(models.usersDB, {foreignKey: 'user_id',sourceKey: 'user_id'})
+        hakaksessDB.belongsTo(models.usersDB, {foreignKey: 'userId',sourceKey: 'userId'})
         hakaksessDB.belongsTo(models.rolesDB, {foreignKey: 'role_id',sourceKey: 'role_id'})
       };
 

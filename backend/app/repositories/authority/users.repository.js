@@ -13,7 +13,7 @@ function usersRepository(db) {
                 include: [
                     {
                         //through:{
-                        attributes:['user_id','role_id'//'KODEATASAN',//'MANAGERNAME'
+                        attributes:['userId','role_id'//'KODEATASAN',//'MANAGERNAME'
                         ],//},//},
                         include: [
                             {
@@ -79,7 +79,15 @@ function usersRepository(db) {
                         attributes:['norek'//'KODEATASAN',//'MANAGERNAME'
                         ],//},//},
                             model: db.mstBankDB,
-                        as:'MENUs', 
+                        as:'MSTBANKs', 
+                        required:false,
+
+                    },
+                    {
+                        attributes:['idPelanggan'//'KODEATASAN',//'MANAGERNAME'
+                        ],//},//},
+                            model: db.masterpelangganDB,
+                        as:'MASTERPELANGGANs', 
                         required:false,
 
                     }
