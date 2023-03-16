@@ -77,6 +77,7 @@ module.exports = (sequelize, Sequelize) => {
 //    });
     usersDB.associate = function(models) {
         usersDB.hasMany(models.hakaksessDB, {foreignKey: 'user_id',sourceKey: 'user_id'})
+        usersDB.hasMany(models.mstBankDB, {foreignKey: 'user_id',sourceKey: 'user_id'})
       };
     
     return usersDB;

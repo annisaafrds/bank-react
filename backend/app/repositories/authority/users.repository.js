@@ -64,7 +64,7 @@ function usersRepository(db) {
                     
                                //where : {EMPNO : 20 },
                     
-                            }
+                            },
                         ],
                         
 
@@ -74,6 +74,14 @@ function usersRepository(db) {
             
                        //where : {EMPNO : 20 },
             
+                    },
+                    {
+                        attributes:['norek'//'KODEATASAN',//'MANAGERNAME'
+                        ],//},//},
+                            model: db.mstBankDB,
+                        as:'MENUs', 
+                        required:false,
+
                     }
                 ],
              

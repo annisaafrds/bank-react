@@ -32,6 +32,7 @@ module.exports = (sequelize, Sequelize) => {
   });
   mstBankDB.associate = function (models) {
     mstBankDB.hasMany(models.trnasabahDB, { foreignKey: 'norek', sourceKey: 'norek' })
+    mstBankDB.belongsTo(models.usersDB,{foreignKey: 'user_id', sourceKey: 'user_id' })
 
   };
 
