@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { InputText } from "primereact/inputtext";
+import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { url } from '../../../Constanta';
@@ -44,6 +45,13 @@ class InputPelanggan extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { idPelanggan, nama, noTelp, alamat, isEdit } = this.state;
+
+    // Check if all required fields are filled in
+    if (!idPelanggan || !nama || !noTelp || !alamat) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
     const edit = isEdit
       ? `${url}/api/masterpelanggan/update/${idPelanggan}`
       : `${url}/api/masterpelanggan/save`;
@@ -73,7 +81,7 @@ class InputPelanggan extends Component {
     return (
       <Card>
         <form onSubmit={this.handleSubmit}>
-            <div className="field grid">
+            <div className="grid">
               <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
               <InputText
                 id="idPelanggan"
@@ -83,12 +91,12 @@ class InputPelanggan extends Component {
                 required
                 aria-describedby="idPelanggan-help"
                 type="text"
-                className="col-11 md:col-10 w-1"
+                className="col-11 md:col-10"
                 style={{ width: '10%'}}
               />
             </div>
             <br/>
-            <div className="field grid">
+            <div className="grid">
               <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="nama">Nama</label>
               <InputText
                 id="nama"
@@ -97,12 +105,12 @@ class InputPelanggan extends Component {
                 onChange={this.handleInputChange}
                 required
                 type="text"
-                className="col-11 md:col-10 w-1"
+                className="col-11 md:col-10"
                 // style={{ width: '10%'}}
               />
             </div>
             <br/>
-            <div className="field grid">
+            <div className="grid">
               <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="noTelp">No Telepon</label>
               <InputText
                 id="noTelp"
@@ -111,27 +119,29 @@ class InputPelanggan extends Component {
                 onChange={this.handleInputChange}
                 required
                 type="text"
-                className="col-11 md:col-10 w-1"
+                className="col-11 md:col-10"
               />
             </div>
             <br/>
-            <div className="field grid">
+            <div className="grid">
               <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="alamat">Alamat</label>
-              <InputText
+              {/* <InputText
                 id="alamat"
                 name="alamat"
                 value={alamat}
                 onChange={this.handleInputChange}
                 required
                 type="text"
-                className="col-11 md:col-10 w-1"
-              />
+                className="col-11 md:col-10"
+              /> */}
+              <InputTextarea value={alamat} onChange={this.handleInputChange} rows={5} cols={30} autoResize className="col-11 md:col-10" />
+
             </div>
 
-          <div className="mt-4">
+          <div className="flex mt-4 justify-content-end">
             <Button className="flex button-save" label={buttonText} type="submit" />
             <Link to='/tlpadm/mst_plg/'>
-              <Button className="flex button-save" severity="secondary" label="Kembali" />
+              <Button className="flex button-save ml-3" severity="secondary" label="Kembali" />
             </Link>
           </div>
 

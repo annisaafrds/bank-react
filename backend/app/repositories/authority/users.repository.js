@@ -13,7 +13,7 @@ function usersRepository(db) {
                 include: [
                     {
                         //through:{
-                        attributes:['user_id','role_id'//'KODEATASAN',//'MANAGERNAME'
+                        attributes:['userId','role_id'//'KODEATASAN',//'MANAGERNAME'
                         ],//},//},
                         include: [
                             {
@@ -64,7 +64,7 @@ function usersRepository(db) {
                     
                                //where : {EMPNO : 20 },
                     
-                            }
+                            },
                         ],
                         
 
@@ -74,6 +74,22 @@ function usersRepository(db) {
             
                        //where : {EMPNO : 20 },
             
+                    },
+                    {
+                        attributes:['norek'//'KODEATASAN',//'MANAGERNAME'
+                        ],//},//},
+                            model: db.mstBankDB,
+                        as:'MSTBANKs', 
+                        required:false,
+
+                    },
+                    {
+                        attributes:['idPelanggan'//'KODEATASAN',//'MANAGERNAME'
+                        ],//},//},
+                            model: db.masterpelangganDB,
+                        as:'MASTERPELANGGANs', 
+                        required:false,
+
                     }
                 ],
              

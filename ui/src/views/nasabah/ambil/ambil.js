@@ -27,7 +27,8 @@ class Ambil extends Component {
       nama:'',
       saldo:'',
       listData: [],
-      loading: true
+      loading: true,
+      showInputSaldo: false // new state property
     };
     this.ubahNorek = this.ubahNorek.bind(this);
     this.clearNorek = this.clearNorek.bind(this);
@@ -63,6 +64,8 @@ class Ambil extends Component {
   ambilTunai(e) {
     e.preventDefault();
     this.listAmbil(this.state.norek);
+    // show input saldo
+    this.setState({ showInputSaldo: true });
   }
 
   ubahNorek(e) {
@@ -75,7 +78,9 @@ class Ambil extends Component {
 
   clearNorek(e) {
     this.setState(prevState => ({
-      norek: ''
+      norek: '',
+      listData: [],
+      showInputSaldo: false // hide input saldo when clear norek
     }))
     // listAmbil = [];
   }
@@ -88,76 +93,65 @@ class Ambil extends Component {
   render() {
 
     return (
-      <CRow>
-        <CCol xs={12}>
-          <CCard mb={4}>
-            <CCardHeader>
-              <strong>Ambil Tunai</strong>
-            </CCardHeader>
-            <CCardBody>
-              <CCol sm={3}>
-                <p className="text-medium-emphasis small w-full">
-                  Masukkan Nomor Rekening:
-                </p>
-                <CFormInput
-                    value={this.state.norek}
-                    className="col-sm-2"
-                    type="text"
-                    placeholder="Nomor Rekening"
-                    aria-label="default input example"
-                    onChange={this.ubahNorek}
-                />
-              </CCol>
-            </CCardBody>
-            <CCardFooter>
-              <div>
-                <div>
-                  <div>
-                    <button className="btn btn-info" type="button" onClick={this.ambilTunai}>Ambil</button>
-                    &nbsp;
-                    <button className="btn btn-secondary" type="button" onClick={this.clearNorek}>Batal</button>&nbsp;
-                  </div>
-                </div>
+      <>
+        <Card title="Ambil Tunai" className='mb-3'>
+          <div className="">
+            <div class="col-12 md:col-6">
+              <label htmlFor="idPelanggan">Nomor Rekening <span style={{ color: 'red' }}>*</span></label>
+            </div>
+            <div class="col-12 md:col-6">
+              <InputText
+                id="idPelanggan"
+                name="idPelanggan"
+                value={this.state.norek}
+                onChange={this.ubahNorek}
+                required
+                aria-describedby="idPelanggan-help"
+                type="text"
+                style={{ width: '40%'}}
+                placeholder="Masukan Nomor Rekening"
+              />
+            </div>
+          </div>
+
+          {/* Muncul ketika no rek diinput dan ada datanya */}
+          { this.state.showInputSaldo && (
+            <div className="">
+              <div class="col-12 md:col-6">
+                <label htmlFor="saldo">Saldo</label>
               </div>
-            </CCardFooter>
-          </CCard>
+              <div class="col-12 md:col-6">
+                <InputText
+                  id="saldo"
+                  name="saldo"
+                  value={this.state.saldo}
+                  onChange={this.ubahNorek}
+                  required
+                  type="text"
+                  style={{ width: '40%'}}
+                  placeholder="Isi jumlah uang"
+                />
+              </div>
+            </div>
+          )}
 
-          <DataTable stripedRows header="Data Pelanggan" value={this.state.listData} tableStyle={{ minWidth: '50rem' }}
-              paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
-              filterDisplay="row"
-              loading={this.state.loading}
-              emptyMessage="No customers found.">
-              <Column field="norek" header="No Rekening" sortable></Column>
-              <Column field="nama" header="Nama" sortable></Column>
-              <Column field="saldo" header="Saldo" dataType="numeric" sortable body={this.formatCurrency}></Column>
-              {/* <Column field="nama" header="Nama" sortable ></Column>
-              <Column field="noTelp" header="No Telepon" sortable ></Column>
-              <Column field="alamat" header="Alamat" sortable ></Column> */}
-              {/* <Column header="Actions" body={(data, state) =>
-                <div>
-                  <Link to='/tlpadm/mst_plg/InputPelanggan'>
+          <div className="flex mt-4">
+            <Button className="flex button-save" label="Ambil" type="submit" onClick={this.ambilTunai} />
+            <Button className="flex button-save ml-3" severity="secondary" label="Batal" onClick={this.clearNorek} />
+          </div>
+        </Card>
 
-                    <Button icon="pi pi-pencil" className="p-button-rounded p-button-text"
-                    // onClick={(e) => {
-                    //     console.log("row idx: " + data.idPelanggan);
-                    // }}
-                    />
-                  </Link>
-                  <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
-                    onClick={(e) => {
-                      console.log("row idx: " + data.idPelanggan);
-                      this.onDelete(data.idPelanggan);
-                    }
-                    } />
-                  <ConfirmDialog header="Confirmation" visible={confirmationVisible} onHide={this.onCancelDelete} message="Are you sure you want to delete this data?" icon="pi pi-exclamation-triangle" accept={this.onConfirmDelete} reject={this.onCancelDelete} />
-
-                </div>
-              }>
-              </Column> */}
-            </DataTable>
-        </CCol>
-      </CRow>
-    )
+        <DataTable stripedRows header="Data Pelanggan" value={this.state.listData} tableStyle={{ minWidth: '50rem' }}
+            paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
+            filterDisplay="row"
+            loading={this.state.loading}
+            emptyMessage="No customers found.">
+            <Column field="norek" header="No Rekening"></Column>
+            <Column field="nama" header="Nama"></Column>
+            <Column field="saldo" header="Saldo" dataType="numeric" body={this.formatCurrency}></Column>
+        </DataTable>
+      </>
+    );
   }
 }
 
