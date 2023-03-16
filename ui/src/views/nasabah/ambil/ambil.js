@@ -7,7 +7,16 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
 import { InputText } from 'primereact/inputtext';
-import { InputNumber } from 'primereact/inputnumber';
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardFooter,
+  CCardHeader,
+  CCol,
+  CFormInput,
+  CRow,
+} from '@coreui/react'
 
 class Ambil extends Component {
 
@@ -91,13 +100,14 @@ class Ambil extends Component {
               <label htmlFor="idPelanggan">Nomor Rekening <span style={{ color: 'red' }}>*</span></label>
             </div>
             <div class="col-12 md:col-6">
-              <InputNumber
+              <InputText
                 id="idPelanggan"
                 name="idPelanggan"
                 value={this.state.norek}
                 onChange={this.ubahNorek}
                 required
                 aria-describedby="idPelanggan-help"
+                type="text"
                 style={{ width: '40%'}}
                 placeholder="Masukan Nomor Rekening"
               />
