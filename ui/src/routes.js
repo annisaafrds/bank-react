@@ -22,7 +22,6 @@ const InputNasabah = React.lazy(() => import('./views/bnkadm/trksinasabah/InputN
 
 
 
-
 const routes = [
   { path: '/', exact: true, name: 'Home', element: Dashboard },
   { path: '/nsbh/setor', name: 'Setor Tunai', element: Setor },

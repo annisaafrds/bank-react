@@ -59,6 +59,7 @@ require("./app/routes/tlp/history-telkom.routes")(app);
 require("./app/routes/tr-nasabah/tr-nasabah.routes")(app);
 require("./app/routes/bankAdm/masterBank/masterBank.routes")(app);
 require("./app/routes/bankAdm/history/history.routes")(app);
+require("./app/routes/authority/users.routes")(app);
 
 // dummy health check
 app.get('/api/trainningNodejs', (req, res) => {

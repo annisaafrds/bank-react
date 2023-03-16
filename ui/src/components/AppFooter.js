@@ -6,7 +6,7 @@ const AppFooter = () => {
     <CFooter>
       <div>
         <a href="https://ogya.co.id" target="_blank" rel="noopener noreferrer">
-          Batch 8
+          Batch 6
         </a>
         <span className="ms-1">&copy; 2023.</span>
       </div>

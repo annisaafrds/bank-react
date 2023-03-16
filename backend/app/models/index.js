@@ -32,6 +32,14 @@ db.transaksiTelkomDB = require("./tlp/transaksi-telkom.model")(sequelize, Sequel
 db.historyTelkomDB = require("./tlp/history-telkom.model")(sequelize, Sequelize);
 db.mstBankDB = require("./bankAdm/masterBank/masterBank.model")(sequelize, Sequelize);
 
+db.usersDB=require("./autority/users.model")(sequelize, Sequelize);
+db.hakaksessDB=require("./autority/hak_akses.model")(sequelize, Sequelize);
+db.rolesDB=require("./autority/roles.model")(sequelize, Sequelize);
+db.roles_menuDB=require("./autority/role_menu.model")(sequelize, Sequelize);
+db.menusDB=require("./autority/menus.model")(sequelize, Sequelize);
+//roles_menuDB
+
+
 Object.keys(db).forEach((model) => {
   if (db[model].associate) {
     db[model].associate(db);
