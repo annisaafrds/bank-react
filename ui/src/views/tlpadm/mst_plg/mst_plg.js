@@ -190,15 +190,15 @@ onCancelDelete = () => {
         <>
           <Card>
             <div className="grid">
-              <div className="col-6">
+              <div className="col-9">
                 <Link to='/tlpadm/mst_plg/InputPelanggan'>
                   <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" />
                 </Link>
               </div>
-              <div className="col-6">
+              <div className="col justify-content-end">
                 <span className="p-input-icon-left">
                   <i className="pi pi-search" />
-                <InputText type="search" value={this.state.searchQuery} onChange={this.handleSearch} />
+                <InputText placeholder='Search' type="search" value={this.state.searchQuery} onChange={this.handleSearch} />
                 </span>
               </div>
             </div>
