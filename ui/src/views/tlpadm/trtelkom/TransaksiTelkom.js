@@ -3,7 +3,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
-import {Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { url } from '../../../Constanta';
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
 
@@ -158,11 +158,15 @@ class TransaksiTelkom extends Component {
               }}></Column>
               <Column header="Actions" body={(data, state) =>
                 <div>
+                    <Link to={'/tlpadm/trksi_tlkm/inputTransaksiTelkom/' + data.idTransaksi}>
                     <Button icon="pi pi-pencil" className="p-button-rounded p-button-text"
                             onClick={(e) => {
                                 console.log("row idx: " + data.idTransaksi);
+                                // const history = useHistory();
+                                // history.push(generatePath("", data.idTransaksi ));
                             }
                         }/>
+                    </Link>
                     <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
                             onClick={(e) => {
                                 console.log("row idx: " + data.idTransaksi);

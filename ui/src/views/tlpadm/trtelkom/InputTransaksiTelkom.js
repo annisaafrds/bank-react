@@ -4,6 +4,9 @@ import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Dropdown } from 'primereact/dropdown';
 import { url } from '../../../Constanta';
+import { Link } from "react-router-dom";
+import "./style.css"
+
 class InputTransaksiTelkom extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +19,36 @@ class InputTransaksiTelkom extends Component {
       status: "",
       isEdit: false,
     };
+    // console.log('Props:', window.location.href);
+    // console.log('Props:', window.location.href.slice(63));
+
+    if(window.location.href.slice(63) != '') {
+      this.getDataById(window.location.href.slice(63));
+    }
+  }
+
+  getDataById(id) {
+    var fetchUrl = `value=${id}`;
+    fetch(`http://localhost:3535/api/transaksi-telkom/getById?${fetchUrl}`)
+      .then((response) => response.json())
+      .then((tr) => {
+        const { idTransaksi, idPelanggan, bulanTagihan, tahunTagihan, uang, status } = tr.rows[0];
+        console.log(tr);
+        console.log(tr.rows[0]);
+        this.setState(
+          (prevState) => ({
+            idTransaksi,
+            idPelanggan,
+            bulanTagihan,
+            tahunTagihan,
+            uang,
+            status,
+            isEdit: true,
+          }),
+        )})
+      .catch((Err) => {
+        // alert("Tidak meload data1");
+    });
   }
 
   componentDidMount() {
@@ -70,7 +103,7 @@ class InputTransaksiTelkom extends Component {
     const { idTransaksi, bulanTagihan, tahunTagihan, uang, status, isEdit } = this.state;
     const idPelanggan = this.state.idPelanggan.idPelanggan;
     const edit = isEdit
-      ? `${url}/api/transaksi-telkom/update/${idTransaksi}`
+      ? `${url}/api/transaksi-telkom/update`
       : `${url}/api/transaksi-telkom/save`;
 
     const method = isEdit ? "PUT" : "POST";
@@ -98,87 +131,92 @@ class InputTransaksiTelkom extends Component {
     return (
       <Card>
         <form onSubmit={this.handleSubmit}>
-            <div className="field grid">
-              <label className="col-12 mb-2 md:col-2 md:mb-0" htmlFor="idTransaksi">ID <span style={{ color: 'red' }}>*</span></label>
+            <div className="grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="idTransaksi">ID <span style={{ color: 'red' }}>*</span></label>
               <InputText
-                className="col-12 md:col-10 w-1"
+                className="col-11 md:col-10"
                 id="idTransaksi"
                 name="idTransaksi"
                 value={idTransaksi}
                 onChange={this.handleInputChange}
                 required
-                style={{ width: '30%'}}
+                style={{ width: '10%'}}
+                type="text"
               />
             </div>
             <br/>
-            <div className="field grid">
-              <label className="col-12 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">Pelanggan <span style={{ color: 'red' }}>*</span></label>
+            <div className="grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">Pelanggan</label>
               <Dropdown
-                className="col-12 md:col-10 w-1"
+                className="col-11 md:col-10"
                 name="idPelanggan"
                 value={idPelanggan}
                 onChange={this.handleInputChange}
                 options={this.state.listPelanggan}
                 optionLabel="nama"
                 placeholder="Select Pelanggan"
-                style={{ width: '30%'}}
               />
             </div>
             <br/>
-            <div className="p-field">
-              <label className="col-12 mb-2 md:col-2 md:mb-0" htmlFor="bulanTagihan">Bulan Tagihan</label>
+            <div className="grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="bulanTagihan">Bulan Tagihan</label>
               <InputText
-                className="col-12 md:col-10 w-1"
+                className="col-11 md:col-10"
                 id="bulanTagihan"
                 name="bulanTagihan"
                 value={bulanTagihan}
                 onChange={this.handleInputChange}
                 required
-                style={{ width: '30%'}}
+                // style={{ width: '30%'}}
               />
             </div>
             <br/>
-            <div className="p-field">
-              <label className="col-12 mb-2 md:col-2 md:mb-0" htmlFor="tahunTagihan">Tahun Tagihan</label>
+            <div className="grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="tahunTagihan">Tahun Tagihan</label>
               <InputText
-                className="col-12 md:col-10 w-1"
+                className="col-11 md:col-10"
                 id="tahunTagihan"
                 name="tahunTagihan"
                 value={tahunTagihan}
                 onChange={this.handleInputChange}
                 required
-                style={{ width: '30%'}}
+                // style={{ width: '30%'}}
               />
             </div>
             <br/>
-            <div className="p-field">
-              <label className="col-12 mb-2 md:col-2 md:mb-0" htmlFor="uang">Uang</label>
+            <div className="grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="uang">Uang</label>
               <InputText
-                className="col-12 md:col-10 w-1"
+                className="col-11 md:col-10"
                 id="uang"
                 name="uang"
                 value={uang}
                 onChange={this.handleInputChange}
                 required
-                style={{ width: '30%'}}
+                // style={{ width: '30%'}}
               />
             </div>
             <br/>
-            <div className="p-field">
-              <label className="col-12 mb-2 md:col-2 md:mb-0" htmlFor="status">Status</label>
+            <div className="grid">
+              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="status">Status</label>
               <InputText
-                className="col-12 md:col-10 w-1"
+                className="col-11 md:col-10"
                 id="status"
                 name="status"
                 value={status}
                 onChange={this.handleInputChange}
                 required
-                style={{ width: '30%'}}
+                // style={{ width: '30%'}}
               />
             </div>
             <br/>
 
-          <Button label={buttonText} type="submit" />
+            <div className="flex mt-4 justify-content-end">
+              <Button className="flex button-save" label={buttonText} type="submit" />
+              <Link to='/tlpadm/trksi_tlkm/'>
+                <Button className="flex button-save" severity="secondary" label="Kembali" />
+              </Link>
+            </div>
         </form>
       </Card>
     );

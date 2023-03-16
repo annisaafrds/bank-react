@@ -151,14 +151,14 @@ exports.updateTransaksiTelkom = async (req, res) => {
   const tr = await db.sequelize.transaction();
   try {
     var dataTransaksiTelkom = {
-      idTransaksi: req.query.idTransaksi,
+      idTransaksi: req.body.idTransaksi,
       idPelanggan: req.body.idPelanggan,
       bulanTagihan: req.body.bulanTagihan,
       tahunTagihan: req.body.tahunTagihan,
       uang: req.body.uang,
       status: req.body.status,
     };
-    const tempITransaksiTelkom = await transaksiTelkomRepo.updateTransaksiTelkom(req.query.idTransaksi, dataTransaksiTelkom, tr);
+    const tempITransaksiTelkom = await transaksiTelkomRepo.updateTransaksiTelkom(req.body.idTransaksi, dataTransaksiTelkom, tr);
     let message = {
       english: `Successfully Update TRANSAKSI_TELKOM`,
       indonesia: `Berhasil Update TRANSAKSI_TELKOM`,
@@ -175,5 +175,39 @@ exports.updateTransaksiTelkom = async (req, res) => {
       res.send(jsonMessage.jsonFailed("Not Define", "Not Define", errMessage, "30"));
     }
     await tr.rollback();
+  }
+};
+
+exports.getById = async (req, res) => {
+  
+  const { value } = req.query;
+  try {
+    var condition = null;
+    //const { limit, offset } = getPagination(page - 1, size);
+
+//    const Op = db.Sequelize.Op;
+    //const norek = parseInt(req.query.norek)
+    
+      condition = { ["idTransaksi"]: `${value}`  };
+
+    console.log("condition",condition)
+    var data = await transaksiTelkomRepo.getTransaksiTelkom(condition);
+    
+    //const response = getPagingData(data, page, limit);
+  
+    let message = {
+      english: `Successfully Retrieved Data Master Bank`,
+      //"indonesia" : `Berhasil Mengambil Data EMP`,
+    };
+    res.send(data)
+
+    //res.send(jsonMessage.jsonSuccess(message, response));
+  } catch (err) {
+    const errMessage = err.message || "Some error occurred while get Data Master Bank";
+    if (err.original !== undefined) {
+      res.send(jsonMessage.jsonFailed(err.original.code, err.original.errno, errMessage, "30"));
+    } else {
+      res.send(jsonMessage.jsonFailed("Not Define", "Not Define", errMessage, "30"));
+    }
   }
 };

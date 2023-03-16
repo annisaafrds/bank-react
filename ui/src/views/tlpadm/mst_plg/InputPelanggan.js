@@ -4,7 +4,7 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { url } from '../../../Constanta';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css"
 class InputPelanggan extends Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class InputPelanggan extends Component {
       alamat: "",
       isEdit: false,
     };
+    const navigate = useNavigate();
   }
 
   componentDidMount() {
@@ -69,6 +70,7 @@ class InputPelanggan extends Component {
     if (response.ok) {
       // this.props.history.push("/tlpadm/mst_plg");
       console.log('masuk')
+      // window.location.reload();
     } else {
       console.error("Failed to add or edit customer data");
     }

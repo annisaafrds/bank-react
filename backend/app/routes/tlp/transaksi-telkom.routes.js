@@ -6,6 +6,7 @@ module.exports = (app) => {
   router.get("/", transaksiTelkom.getAll);
   router.get("/getTransaksiTelkom", transaksiTelkom.getTransaksiTelkom);
   router.get("/getOptionsTransaksiTelkom", transaksiTelkom.getOptionsTransaksiTelkom);
+  router.get("/getById", transaksiTelkom.getById);
   router.post("/save", transaksiTelkom.insertTransaksiTelkom);
   router.put("/update", transaksiTelkom.updateTransaksiTelkom);
   router.delete("/delete", transaksiTelkom.deleteTransaksiTelkom);
