@@ -10,12 +10,14 @@ import {
   CRow,
 } from '@coreui/react'
 import { url } from '../../../Constanta';
+import ListSetor from './ListSetor';
 
 class Setor extends Component {
   constructor(props) {
       super(props);
       this.state={
         norek:'',
+        listData: []
       };
       this.ubahNorek = this.ubahNorek.bind(this);
       this.clearNorek = this.clearNorek.bind(this);
@@ -57,8 +59,8 @@ class Setor extends Component {
   // }
 
   setorTunai() {
-    console.log("vallll",123);
-    this.listSetorDb(123);
+    console.log("vallll",this.state.norek);
+    this.listSetorDb(this.state.norek);
   }
 
   ubahNorek(e) {
@@ -111,6 +113,9 @@ class Setor extends Component {
               </div>
             </CCardFooter>
           </CCard>
+          <ListSetor
+              listData={this.state.listData}
+          />
         </CCol>
       </CRow>
     )

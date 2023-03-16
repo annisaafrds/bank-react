@@ -12,26 +12,18 @@ class ListSetor extends Component {
 
     render() {
         const columns = [
-          {
-            name: "Pelanggan",
-            selector: "idPelanggan",
-          },
-          {
-              name: "Tanggal Bayar",
-              selector: "tanggalBayar",
-          },
-          {
-              name: "Bulan Tagihan",
-              selector: "bulanTagihan",
-          },
-          {
-              name: "Tahun Tagihan",
-              selector: "tahunTagihan",
-          },
-          {
-              name: "Uang",
-              selector: "uang",
-          }
+            {
+                name: "No Rekening",
+                selector: "norek",
+            },
+            {
+                name: "Nama",
+                selector: "nama",
+            },
+            {
+                name: "Saldo",
+                selector: "saldo",
+            },
         ];
 
         return (
@@ -39,7 +31,7 @@ class ListSetor extends Component {
                 {/* <p>{this.props.listHistoryTelkom[0]}</p> */}
                 <DataTable
                     columns={columns}
-                    data={this.props.listHistoryTelkom}
+                    data={this.props.listData}
                     theme="solarized"
                     // customStyles={tableCustomStyle}
                     // customStyles={customStyles}
