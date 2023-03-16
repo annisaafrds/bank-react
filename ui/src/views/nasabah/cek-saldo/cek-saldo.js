@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../../style.css';
+// import '../../../style.css';
 import DataTable, {
   createTheme,
   defaultThemes,
@@ -21,29 +21,29 @@ const setor = () => {
   const [acountBank, setAcountBank] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const columns = [
-        {"name": "alamat",
+        {"name": "Alamat Nasabah",
           // selector: "HIRE_DATE",
           cell:(row) => row.alamat
         },
-        {"name": "nama",
+        {"name": "Nama Nasabah",
         // selector: "HIRE_DATE",
         cell:(row) => row.nama
       },
-      {"name": "noTelp",
+      {"name": "No Telp",
       // selector: "HIRE_DATE",
       cell:(row) => row.noTelp
     },
-    {"name": "norek",
+    {"name": "No Rekening",
     // selector: "HIRE_DATE",
     cell:(row) => row.norek
   },
         {
-          'name': "saldo",
+          'name': "Saldo Tabungan",
           // selector: "HIRE_DATE",
           cell:(row) => row.saldo
         },
         {
-          'name': "userId",
+          'name': "User ID",
           // selector: "HIRE_DATE",
           cell:(row) => row.userId!==null?row.userId:''
         },

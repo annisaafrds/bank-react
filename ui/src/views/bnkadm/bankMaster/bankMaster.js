@@ -231,11 +231,14 @@ onCancelDelete = () => {
 
               <Column header="Actions" body={(data, state) =>
                 <div>
+                  {/* <Link> */}
+                  <Link to={'/bnkadm/bankMaster/inputBankMaster?norek=' + data.norek}>
                     <Button icon="pi pi-pencil" className="p-button-rounded p-button-text"
                             onClick={(e) => {
                                 console.log("row idx: " + data.norek);
                             }
                         }/>
+                        </Link>
                     <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
                             onClick={(e) => {
                                 console.log("row idx: " + data.norek);
