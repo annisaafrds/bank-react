@@ -5,7 +5,7 @@ import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { url } from '../../../Constanta';
 import { Link, useNavigate } from "react-router-dom";
-import { BrowserRouter, useHistory } from "react-router-dom";
+import { Dialog } from "primereact/dialog";
 
 import "./style.css"
 class InputPelanggan extends Component {
@@ -17,30 +17,29 @@ class InputPelanggan extends Component {
       noTelp: "",
       alamat: "",
       isEdit: false,
+      showConfirmation: false,
     };
-    if(window.location.href.slice(63) != '') {
-      this.getDataById(window.location.href.slice(63));
-    }
   }
 
   async getDataById(id) {
     var fetchUrl = `value=${id}`;
-
-    try {
-      const response = await fetch(`http://localhost:3535/api/masterpelanggan/getById?${fetchUrl}`);
-      const data = await response.json();
-      const { idPelanggan, nama, noTelp, alamat } = data.rows[0];
-      this.setState({
-        idPelanggan,
-        nama,
-        noTelp,
-        alamat,
-        isEdit: true,
-      });
-    } catch (error) {
-      console.log(error);
-      // handle error here
-    }
+    fetch(`http://localhost:3535/api/masterpelanggan/getById?${fetchUrl}`)
+      .then((response) => response.json())
+      .then((tr) => {
+        const { idPelanggan, nama, noTelp, alamat } = tr;
+        console.log(tr);
+        this.setState(
+          (prevState) => ({
+            idPelanggan,
+            nama,
+            noTelp,
+            alamat,
+            isEdit: true,
+          }),
+        )})
+      .catch((Err) => {
+        // alert("Tidak meload data1");
+    });
   }
 
   async componentDidMount(id) {
@@ -63,25 +62,27 @@ class InputPelanggan extends Component {
     // let id = location.data;
     // this.getDataById(id);
     console.log(this.state.idPelanggan);
+    this.getDataById(window.location.href.slice(54));
+    this.listPelangganOption();
   }
 
-  // listPelangganOption() {
-  //   fetch(`http://localhost:3535/api/masterpelanggan/getOptionsMasterPelanggan`)
-  //     .then((response) => response.json())
-  //     .then((pel) => {
-  //       this.setState(
-  //         (prevState) => ({
-  //           listPelanggan: pel.data.data,
-  //         }),
-  //         () => {
-  //         }
-  //       );
-  //     })
-  //     .catch((Err) => {
-  //       alert("Tidak meload data1");
-  //     });
+  listPelangganOption() {
+    fetch(`http://localhost:3535/api/masterpelanggan/getOptionsMasterPelanggan`)
+      .then((response) => response.json())
+      .then((pel) => {
+        this.setState(
+          (prevState) => ({
+            listPelanggan: pel.data.data,
+          }),
+          () => {
+          }
+        );
+      })
+      .catch((Err) => {
+        alert("Tidak meload data1");
+      });
 
-  // }
+  }
 
   handleInputChange = (event) => {
     const target = event.target;
@@ -118,7 +119,9 @@ class InputPelanggan extends Component {
     });
 
     if (response.ok) {
-      window.location.href = '/#/tlpadm/mst_plg';
+      this.setState({
+        showConfirmation: true,
+      });
       console.log('masuk')
       // window.location.reload();
     } else {
@@ -126,69 +129,73 @@ class InputPelanggan extends Component {
     }
   };
 
+  handleConfirmationOk = () => {
+    this.setState({
+      showConfirmation: false,
+    });
+    window.location.href = '/#/tlpadm/mst_plg';
+  };
+
   render() {
-    const { idPelanggan, nama, noTelp, alamat, isEdit } = this.state;
+    const { idPelanggan, nama, noTelp, alamat, isEdit, showConfirmation  } = this.state;
     const buttonText = isEdit ? "Simpan" : "Tambah";
 
     return (
+      <>
       <Card>
         <form onSubmit={this.handleSubmit}>
-            <div className="grid">
-              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
-              <InputText
-                id="idPelanggan"
-                name="idPelanggan"
-                value={idPelanggan}
-                onChange={this.handleInputChange}
-                required
-                aria-describedby="idPelanggan-help"
-                type="text"
-                className="col-11 md:col-10"
-                style={{ width: '10%'}}
-              />
-            </div>
-            <br/>
-            <div className="grid">
-              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="nama">Nama</label>
-              <InputText
-                id="nama"
-                name="nama"
-                value={nama}
-                onChange={this.handleInputChange}
-                required
-                type="text"
-                className="col-11 md:col-10"
-                // style={{ width: '10%'}}
-              />
-            </div>
-            <br/>
-            <div className="grid">
-              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="noTelp">No Telepon</label>
-              <InputText
-                id="noTelp"
-                name="noTelp"
-                value={noTelp}
-                onChange={this.handleInputChange}
-                required
-                type="text"
-                className="col-11 md:col-10"
-              />
-            </div>
-            <br/>
-            <div className="grid">
-              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="alamat">Alamat</label>
-              {/* <InputTextarea value={alamat} onChange={this.handleInputChange} rows={5} cols={30} autoResize className="col-11 md:col-10" /> */}
-              <InputText
-                id="alamat"
-                name="alamat"
-                value={alamat}
-                onChange={this.handleInputChange}
-                required
-                type="text"
-                className="col-11 md:col-10"
-              />
+          <div className="grid">
+            <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
+            <InputText
+              id="idPelanggan"
+              name="idPelanggan"
+              value={idPelanggan}
+              onChange={this.handleInputChange}
+              required
+              aria-describedby="idPelanggan-help"
+              type="text"
+              className="col-11 md:col-10"
+              style={{ width: '10%' }}
+              disabled={isEdit} />
+          </div>
+          <br />
+          <div className="grid">
+            <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="nama">Nama</label>
+            <InputText
+              id="nama"
+              name="nama"
+              value={nama}
+              onChange={this.handleInputChange}
+              required
+              type="text"
+              className="col-11 md:col-10" />
+          </div>
+          <br />
+          <div className="grid">
+            <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="noTelp">No Telepon</label>
+            <InputText
+              id="noTelp"
+              name="noTelp"
+              value={noTelp}
+              onChange={this.handleInputChange}
+              required
+              type="text"
+              className="col-11 md:col-10" />
+          </div>
+          <br />
+          <div className="grid">
+            <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="alamat">Alamat</label>
+            {/* <InputTextarea value={alamat} onChange={this.handleInputChange} rows={5} cols={30} autoResize className="col-11 md:col-10" /> */}
+            <InputText
+              id="alamat"
+              name="alamat"
+              value={alamat}
+              onChange={this.handleInputChange}
+              required
+              type="text"
+              className="col-11 md:col-10" />
 
-            </div>
+          </div>
 
           <div className="flex mt-4 justify-content-end">
             <Button className="flex button-save" label={buttonText} type="submit" />
@@ -199,6 +206,23 @@ class InputPelanggan extends Component {
 
         </form>
       </Card>
+        <Dialog
+          header="Konfirmasi"
+          visible={showConfirmation}
+          onHide={() => this.setState({ showConfirmation: false })}
+          footer={
+            <div>
+              <Button
+                label="OK"
+                className="p-button-primary"
+                onClick={this.handleConfirmationOk}
+              />
+            </div>
+          }
+        >
+          <p>Data pelanggan berhasil disimpan</p>
+        </Dialog>
+        </>
     );
   }
 }
