@@ -3,6 +3,7 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const MstPlg = React.lazy(() => import('./views/tlpadm/mst_plg/mst_plg'))
 const InputPelanggan = React.lazy(() => import('./views/tlpadm/mst_plg/InputPelanggan'))
+const EditPelanggan = React.lazy(() => import('./views/tlpadm/mst_plg/InputPelanggan'))
 const inputBankMaster = React.lazy(() => import('./views/bnkadm/bankMaster/inputBankMaster'))
 const InputTransaksiTelkom = React.lazy(() => import('./views/tlpadm/trtelkom/InputTransaksiTelkom'))
 const EditTransaksiTelkom = React.lazy(() => import('./views/tlpadm/trtelkom/InputTransaksiTelkom'))
@@ -21,8 +22,6 @@ const HistoryTransfer = React.lazy(() => import('./views/bnkadm/history-transaks
 const HistoryTelp = React.lazy(() => import('./views/bnkadm/history-transaksi/bayar-telepon/telp.js'))
 const InputNasabah = React.lazy(() => import('./views/bnkadm/trksinasabah/InputNasabah.js'))
 
-
-
 const routes = [
   { path: '/', exact: true, name: 'Home', element: Dashboard },
   { path: '/nsbh/setor', name: 'Setor Tunai', element: Setor },
@@ -31,6 +30,7 @@ const routes = [
   { path: '/nsbh/bayar-telepon', name: 'Bayar Telepon', element: BayarTelepon },
   { path: '/tlpadm/mst_plg', name: 'Master Pelanggan', element: MstPlg },
   { path: '/tlpadm/mst_plg/InputPelanggan', name: 'Tambah Pelanggan', element: InputPelanggan },
+  { path: '/tlpadm/mst_plg/InputPelanggan/:id', name: 'Edit Pelanggan', element: EditPelanggan },
   { path: '/bnk_adm/mst_bnk/', name: 'Master Bank', element: bankMaster },
   { path: '/bnk_adm/trksi_nsbh', name: 'Transaksi Nasabah', element: Trnasabah },
   { path: '/nsbh/transfer', name: 'Transfer', element: Transfer },

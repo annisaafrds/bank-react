@@ -213,12 +213,12 @@ onCancelDelete = () => {
               <Column field="alamat" header="Alamat" sortable ></Column>
               <Column header="Actions" body={(data, state) =>
                 <div>
-                  <Link to='/tlpadm/mst_plg/InputPelanggan'>
+                  <Link to={ `/tlpadm/mst_plg/InputPelanggan/` + data.idPelanggan }>
 
                     <Button icon="pi pi-pencil" className="p-button-rounded p-button-text"
-                    // onClick={(e) => {
-                    //     console.log("row idx: " + data.idPelanggan);
-                    // }}
+                    onClick={(e) => {
+                        console.log("row idx: " + data.idPelanggan);
+                    }}
                     />
                   </Link>
                   <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"

@@ -7,16 +7,7 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
 import { InputText } from 'primereact/inputtext';
-import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardHeader,
-  CCol,
-  CFormInput,
-  CRow,
-} from '@coreui/react'
+
 
 class Ambil extends Component {
 
@@ -86,7 +77,11 @@ class Ambil extends Component {
   }
 
   formatCurrency(rowData) {
-    return `Rp.${rowData.saldo.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 })}`;
+    const formatter = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR'
+  });
+    return formatter.format(rowData.saldo);
   }
 
 
@@ -143,7 +138,6 @@ class Ambil extends Component {
 
         <DataTable stripedRows header="Data Pelanggan" value={this.state.listData} tableStyle={{ minWidth: '50rem' }}
             paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
-            filterDisplay="row"
             loading={this.state.loading}
             emptyMessage="No customers found.">
             <Column field="norek" header="No Rekening"></Column>
