@@ -80,6 +80,7 @@ class InputNasabah extends Component {
     if (response.ok) {
       // this.props.history.push("/tlpadm/mst_plg");
       alert("Data berhasil di Tambah");
+      window.location.href = '/#/bnk_adm/trksi_nsbh/';
       console.log('masuk')
     } else {
       console.error("Failed to add or edit customer data");
@@ -134,7 +135,7 @@ class InputNasabah extends Component {
             />
           </div>
           <br />
-          <div className="grid">
+          {/* <div className="grid">
             <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="noTelp">No Tlp</label>
             <InputText
               className="col-11 md:col-10"
@@ -146,7 +147,7 @@ class InputNasabah extends Component {
             // style={{ width: '30%'}}
             />
           </div>
-          <br />
+          <br /> */}
           <div className="grid">
             <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="uang">Uang</label>
             <InputText

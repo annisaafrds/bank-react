@@ -117,6 +117,7 @@ class InputTransaksiTelkom extends Component {
     });
 
     if (response.ok) {
+      window.location.href = '/#/tlpadm/trksi_tlkm';
       // this.props.history.push("/tlpadm/mst_plg");
       console.log('masuk')
     } else {
