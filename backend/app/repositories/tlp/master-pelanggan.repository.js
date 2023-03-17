@@ -28,6 +28,24 @@ function masterpelangganRepository(db) {
         });
     }
 
+    const getById = async (idPelanggan) => {
+        const condition = { idPelanggan };
+        const limit = 10;
+        const offset = 0;
+      
+        try {
+          const record = await db.masterpelangganDB.findOne({
+            where: condition,
+            limit: limit,
+            offset: offset
+          });
+          return record;
+        } catch (error) {
+          console.error(error);
+          return null;
+        }
+    };
+
     const getMasterPelanggan = (condition, limit, offset) => {
           
         return db.masterpelangganDB.findAndCountAll({
@@ -36,31 +54,12 @@ function masterpelangganRepository(db) {
                   
       attributes:
             [
-                //[db.sequelize.fn('DISTINCT', db.sequelize.col('EMP.EMPLOYEE_ID')) ,'employeeId2'],
                 'idPelanggan',
                 'nama',
                 'noTelp',
                 'alamat',
                 'userId',
-                //'DEPT.departmentName'
-                //[db.sequelize.col('DEPT.departmentName'),'departmentName']
-                   
             ],
-            
-       /**/
-
-/* */    
-    //   include: [
-        // {
-        //     //through:{
-        //     attributes:['firstName','lastName'//'KODEATASAN',//'MANAGERNAME'
-        //     ],//},//},
-        //     model: db.managerDB,
-        //    as:'Manager', 
-        //    required:false,
-
-        //    //where : {EMPNO : 20 },
-
         },
        {
         //     attributes:['departmentId','departmentName'//'KODEATASAN',//'MANAGERNAME'
@@ -98,7 +97,7 @@ function masterpelangganRepository(db) {
        order :[
         'idPelanggan'
        ],
-       limit, 
+    //    limit, 
        offset,
        raw : true,
             nest : true,
@@ -183,6 +182,7 @@ function masterpelangganRepository(db) {
         insertMasterPelanggan,
         getMasterPelanggan,
         // getMax,
+        getById,
         updateMasterPelanggan,
         deleteMasterPelanggan
     }

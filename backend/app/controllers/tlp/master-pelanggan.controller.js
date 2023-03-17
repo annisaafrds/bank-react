@@ -33,6 +33,31 @@ exports.getAll = async (req, res) => {
   }
 };
 
+exports.getById = async (req, res) => {
+  const { value } = req.query;
+
+  try {
+    var condition = null;
+
+    // Query database to retrieve record with matching idPelanggan
+    condition = { ["idPelanggan"]: `${value}`  };
+    const record = await masterpelangganRepo.getById(value);
+
+    // If record is not found, return a 404 error
+    if (!record) {
+      res.status(404).send("Record not found");
+      return;
+    }
+
+    // If record is found, return it as JSON
+    res.json(record);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+};
+
+
 exports.getOptionsMasterPelanggan = async (req, res) => {
   const { page, size, field, value, type } = req.query;
   try {

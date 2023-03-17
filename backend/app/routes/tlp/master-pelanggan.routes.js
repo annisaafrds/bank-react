@@ -7,6 +7,7 @@ module.exports = (app) => {
     router.get("/", masterpelanggan.getAll);
     // router.get("/OrMysql",  emp.getOrMysqlAll)
     router.get("/getMasterPelanggan", masterpelanggan.getMasterPelanggan);
+    router.get("/getById", masterpelanggan.getById);
     router.get("/getOptionsMasterPelanggan", masterpelanggan.getOptionsMasterPelanggan);
     router.post("/save", masterpelanggan.insertMasterPelanggan);
     router.put("/update", masterpelanggan.updateMasterPelanggan);
