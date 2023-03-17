@@ -1,5 +1,6 @@
 // import './App.css';
 // import './style.css';
+import cekLogin from "../../../cekLogin/cekLogin";
 import React, { Component } from 'react';
 import DataTable, {
     createTheme,
@@ -13,6 +14,8 @@ class ListTrx extends Component {
     }
 
     render() {
+      let logincek=new cekLogin()
+logincek.loginCek();
         const columns = [
             // {
             //     name: "Employee Id",
@@ -29,7 +32,7 @@ class ListTrx extends Component {
             {
                 name: "Status Keterangan",
                 selector: "statusKet",
-                cell: (row) => row.statusKet = "1",
+                cell: (row) => row.statusKet = "3",
 
             },
             {

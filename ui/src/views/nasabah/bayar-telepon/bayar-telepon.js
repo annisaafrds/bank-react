@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect } from 'react'
+import cekLogin from "../../cekLogin/cekLogin"
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -67,6 +68,8 @@ class BayarTelepon extends Component {
   }
 
   render() {
+    let logincek=new cekLogin()
+    logincek.loginCek();
     return (
       <Card title="Bayar Telepon">
         <form>

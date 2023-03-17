@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cekLogin from "../../cekLogin/cekLogin"
 import {
     CButton,
     CCard,
@@ -79,6 +80,8 @@ class Transfer extends Component {
     }
 
     render() {
+      let logincek=new cekLogin()
+      logincek.loginCek();
         return (
             <CRow>
                 <CCol xs={12}>

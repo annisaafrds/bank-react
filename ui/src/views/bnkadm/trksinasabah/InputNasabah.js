@@ -5,6 +5,7 @@ import { Card } from "primereact/card";
 import { url } from '../../../Constanta';
 import { Dropdown } from 'primereact/dropdown';
 import { Link } from "react-router-dom";
+import cekLogin from "../../cekLogin/cekLogin"
 class InputNasabah extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +22,8 @@ class InputNasabah extends Component {
   }
 
   componentDidMount() {
+    let logincek=new cekLogin()
+logincek.loginCek();
     const { location } = this.props;
     if (location && location.data) {
       const { idTransaksiNasabah, norek, norekDituju, noTelp, uang, status, statusKet, tanggal } = location.state.data;

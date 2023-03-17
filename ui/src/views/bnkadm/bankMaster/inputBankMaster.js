@@ -6,9 +6,11 @@ import { useLocation } from 'react-router-dom';
 import '../../../style.css';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
+import cekLogin from "../../cekLogin/cekLogin"
 import {Link } from "react-router-dom";
 import { ConfirmDialog } from 'primereact/confirmdialog';
 // import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom"
 
 class InputBankMaster  extends Component{
     constructor(props) {
@@ -24,19 +26,19 @@ class InputBankMaster  extends Component{
       }
     }
 
-    componentDidMount() {
-      const { location } = this.props;
-      const params=new URLSearchParams(window.location.search)
-      alert(useLocation())
-      if (location && location.data) {
-        const { norek, nama,alamat, noTelp, saldo } = location.state.data;
-        this.setState({
-          norek, nama,alamat, noTelp, saldo,
-          // isEdit: true,
-        });
-      }
-      // this.listPelangganOption();
-    }
+    // componentDidMount() {
+    //   const { location } = this.props;
+    //   const params=new URLSearchParams(window.location.search)
+    //   alert(useLocation())
+    //   if (location && location.data) {
+    //     const { norek, nama,alamat, noTelp, saldo } = location.state.data;
+    //     this.setState({
+    //       norek, nama,alamat, noTelp, saldo,
+    //       // isEdit: true,
+    //     });
+    //   }
+    //   // this.listPelangganOption();
+    // }
 
 
     // listPelangganOption() {
@@ -57,7 +59,6 @@ class InputBankMaster  extends Component{
     //     });
 
     // }
-
 
     handleInputChange = (event) => {
       const target = event.target;
@@ -102,6 +103,8 @@ console.log("this.state.alamat",this.state.alamat)
         // const navigate = useNavigate();
         // navigate("/bnk_adm/mst_bnk/");
         // this.props.history.push("/mst-bank/update");
+        // this.props.router.navigate('/bnk_adm/mst_bnk/');
+        // <Navigate to='/bnk_adm/mst_bnk/' />
         console.log('masuk')
       } else {
         console.error("Failed to add or edit customer data");
@@ -111,6 +114,8 @@ console.log("this.state.alamat",this.state.alamat)
 
 
   render() {
+    let logincek=new cekLogin()
+    logincek.loginCek();
 
     const buttonText = "Tambah";
 
@@ -212,12 +217,12 @@ console.log("this.state.alamat",this.state.alamat)
           <div className="flex mt-8 ">
 
             {/* <Button label={buttonText} type="submit" /> */}
-             <Link to='/bnk_adm/mst_bnk/'>
-            <Button className="button-save" type='submit' label="Save" severity="primary" onClick={(e) => this.handleSubmit(e)} />
+             {/* <Link to='/bnk_adm/mst_bnk/'> */}
+            <Button className="button-save" type='submit' label="Save" severity="primary" onClick={(e) => this.handleSubmit(e)}  />
 
              {/* <Button className="flex button-save" label={buttonText} type="submit" /> */}
               {/* <Button className="flex button-save ml-3" label="Batal" severity="secondary" /> */}
-            </Link>
+            {/* </Link> */}
             {/* <Button  type="submit" /> */}
           </div>
         </form>

@@ -4,6 +4,7 @@ import { Column } from 'primereact/column';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import {Link } from "react-router-dom";
+import cekLogin from "../../cekLogin/cekLogin"
 import { url } from '../../../Constanta';
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
 
@@ -84,6 +85,8 @@ class HistoryTelkom extends Component {
   }
 
   render() {
+    let logincek=new cekLogin()
+logincek.loginCek();
       const { confirmationVisible } = this.state;
       return (
         <>

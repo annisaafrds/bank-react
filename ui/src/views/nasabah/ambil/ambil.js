@@ -6,6 +6,7 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
 import { InputText } from 'primereact/inputtext';
+import cekLogin from "../../cekLogin/cekLogin"
 import {Link } from "react-router-dom";
 
 class Ambil extends Component {
@@ -85,7 +86,8 @@ class Ambil extends Component {
 
 
   render() {
-
+    let logincek=new cekLogin()
+    logincek.loginCek();
     return (
       <>
         <Card title="Ambil Tunai" className='mb-3'>

@@ -6,6 +6,8 @@ import { url } from '../../../../Constanta';
 // import SearchEmployee from './SearchEmployee';
 import { connect } from "react-redux";
 import ListTelp from './listTelp';
+import cekLogin from "../../../cekLogin/cekLogin";
+
 
 class Telp extends Component {
     constructor(props) {
@@ -302,7 +304,8 @@ class Telp extends Component {
     // }
 
     render() {
-
+      let logincek=new cekLogin()
+      logincek.loginCek();
         return (
             <div className="App2">
                 <label><strong>History telepon</strong></label><br />

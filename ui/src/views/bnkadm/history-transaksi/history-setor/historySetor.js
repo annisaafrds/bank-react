@@ -6,6 +6,7 @@ import { url } from '../../../../Constanta';
 // import SearchEmployee from './SearchEmployee';
 import { connect } from "react-redux";
 import ListSetor from './ListSetor';
+import cekLogin from "../../../cekLogin/cekLogin";
 
 
 class historySetor extends Component {
@@ -303,7 +304,8 @@ class historySetor extends Component {
     // }
 
     render() {
-
+      let logincek=new cekLogin()
+      logincek.loginCek();
         return (
             <div className="App">
                 <label><strong>History Setor</strong></label><br />

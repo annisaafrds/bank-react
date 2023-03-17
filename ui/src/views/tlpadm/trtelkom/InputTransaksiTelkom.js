@@ -5,6 +5,7 @@ import { Card } from "primereact/card";
 import { Dropdown } from 'primereact/dropdown';
 import { url } from '../../../Constanta';
 import { Link } from "react-router-dom";
+import cekLogin from "../../cekLogin/cekLogin"
 import "./style.css"
 
 class InputTransaksiTelkom extends Component {
@@ -126,6 +127,8 @@ class InputTransaksiTelkom extends Component {
   };
 
   render() {
+    let logincek=new cekLogin()
+logincek.loginCek();
     const { idTransaksi, idPelanggan, bulanTagihan, tahunTagihan, uang, status, isEdit } = this.state;
     const buttonText = isEdit ? "Simpan" : "Tambah";
 

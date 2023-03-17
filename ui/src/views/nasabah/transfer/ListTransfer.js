@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cekLogin from "../../cekLogin/cekLogin"
 import DataTable, {
     createTheme,
     defaultThemes,
@@ -11,6 +12,8 @@ class ListTransfer extends Component {
     }
 
     render() {
+      let logincek=new cekLogin()
+      logincek.loginCek();
         const columns = [
             {
                 name: "No Rekening",

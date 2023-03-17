@@ -7,6 +7,9 @@ import {Link } from "react-router-dom";
 import { url } from '../../../Constanta';
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
 import { InputText } from 'primereact/inputtext';
+import cekLogin from "../../cekLogin/cekLogin"
+
+
 class mstPlg extends Component {
 
   constructor(props) {
@@ -184,6 +187,8 @@ onCancelDelete = () => {
 }
 
   render() {
+    let logincek=new cekLogin()
+logincek.loginCek();
       const { confirmationVisible } = this.state;
 
       return (

@@ -6,6 +6,8 @@ import { Card } from "primereact/card";
 import { url } from '../../../Constanta';
 import { Link, useNavigate } from "react-router-dom";
 import { Dialog } from "primereact/dialog";
+import cekLogin from "../../cekLogin/cekLogin"
+
 
 import "./style.css"
 class InputPelanggan extends Component {
@@ -137,6 +139,8 @@ class InputPelanggan extends Component {
   };
 
   render() {
+    let logincek=new cekLogin()
+logincek.loginCek();
     const { idPelanggan, nama, noTelp, alamat, isEdit, showConfirmation  } = this.state;
     const buttonText = isEdit ? "Simpan" : "Tambah";
 

@@ -6,6 +6,10 @@ import { url } from '../../../../Constanta';
 // import SearchEmployee from './SearchEmployee';
 import { connect } from "react-redux";
 import ListAmbil from './ListAmbil';
+// import cekLogin from "../../cekLogin/cekLogin"
+import cekLogin from "../../../cekLogin/cekLogin";
+
+
 
 class ambil extends Component {
     constructor(props) {
@@ -302,7 +306,8 @@ class ambil extends Component {
     // }
 
     render() {
-
+      let logincek=new cekLogin()
+      logincek.loginCek();
         return (
             <div className="App">
                 <label><strong>History Ambil</strong></label><br />

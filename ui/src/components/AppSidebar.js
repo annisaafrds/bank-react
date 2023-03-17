@@ -36,13 +36,13 @@ const AppSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
-          <AppSidebarNav items={navigation} />
+          {localStorage.getItem("nama")?<AppSidebarNav items={navigation} />:''}
         </SimpleBar>
       </CSidebarNav>
       {/* <CSidebarToggler
         className="d-none d-md-flex d-lg-flex"
         onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
-      /> */}
+    /> */}
     </CSidebar>
   )
 }

@@ -6,6 +6,7 @@ import { Card } from "primereact/card";
 import { url } from '../../../Constanta';
 import { Link, useNavigate } from "react-router-dom";
 import { Dialog } from "primereact/dialog";
+import cekLogin from "../../cekLogin/cekLogin"
 
 class InputAmbil extends Component {
   constructor(props) {
@@ -119,6 +120,8 @@ class InputAmbil extends Component {
   };
 
   render() {
+    let logincek=new cekLogin()
+    logincek.loginCek();
     const { norek, nama, noTelp, alamat, saldo, showConfirmation  } = this.state;
     const buttonText = "Simpan";
 

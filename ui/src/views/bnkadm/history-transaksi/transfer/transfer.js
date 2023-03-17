@@ -6,6 +6,7 @@ import { url } from '../../../../Constanta';
 // import SearchEmployee from './SearchEmployee';
 import { connect } from "react-redux";
 import ListTrx from './listTrx';
+import cekLogin from "../../../cekLogin/cekLogin";
 
 
 class dataTransfer extends Component {
@@ -303,7 +304,8 @@ class dataTransfer extends Component {
     // }
 
     render() {
-
+      let logincek=new cekLogin()
+      logincek.loginCek();
         return (
             <div className="App1">
                 <label><strong>History Transfer</strong></label><br />

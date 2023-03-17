@@ -9,6 +9,8 @@ import ListTrnasabah from './ListTrnasabah';
 import { Button } from 'primereact/button';
 import { Link } from "react-router-dom";
 import InputNasabah from './InputNasabah';
+import cekLogin from "../../cekLogin/cekLogin"
+
 
 
 class trnasabah extends Component {
@@ -308,7 +310,8 @@ class trnasabah extends Component {
   // }
 
   render() {
-
+    let logincek=new cekLogin()
+    logincek.loginCek();
     return (
       <div className="App">
         <label><strong>Data Transaksi Nasabah</strong></label>

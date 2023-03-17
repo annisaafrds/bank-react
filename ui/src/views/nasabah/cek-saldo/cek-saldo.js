@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import cekLogin from "../../cekLogin/cekLogin"
+
 // import '../../../style.css';
 import DataTable, {
   createTheme,
@@ -17,6 +19,8 @@ import {
 } from '@coreui/react'
 
 const setor = () => {
+  let logincek=new cekLogin()
+logincek.loginCek();
   const [norek, setNorek] = useState('');
   const [acountBank, setAcountBank] = useState([]);
   const [disabled, setDisabled] = useState(true);
@@ -67,6 +71,7 @@ const setor = () => {
       )
 }
   return (
+
     <CRow>
       <CCol xs={12}>
         <CCard mb={4}>

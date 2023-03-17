@@ -24,6 +24,7 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 // import {Link } from "react-router-dom";
 // import { url } from '../../../Constanta';
+import cekLogin from "../../cekLogin/cekLogin"
 import { ConfirmDialog } from 'primereact/confirmdialog';
 
 class bankMaster extends Component {
@@ -98,6 +99,8 @@ class bankMaster extends Component {
   // }
 
   componentDidMount() {
+let logincek=new cekLogin()
+logincek.loginCek();
     const queryParams = new URLSearchParams(window.location.search)
     let size = queryParams.get("size")
     let field = queryParams.get("field")
@@ -155,15 +158,15 @@ class bankMaster extends Component {
   onConfirmDelete = () => {
     const { confirmationId } = this.state;
 
-    fetch(`${url}/api/masterpelanggan/delete?norek=${confirmationId}`, {
+    fetch(`${url}/api/transaksi-telkom/delete?idTransaksi=${confirmationId}`, {
       method: 'DELETE'
     })
     .then(response => {
       if (response.ok) {
         // remove the deleted customer from the list
-        const updatedList = this.state.listBankMaster.filter(item => item.norek !== confirmationId);
+        const updatedList = this.state.listTransaksiTelkom.filter(item => item.idTransaksi !== confirmationId);
         this.setState({
-          listBankMaster: updatedList
+          listTransaksiTelkom: updatedList
         });
         console.log('sukses')
       } else {
@@ -178,7 +181,9 @@ class bankMaster extends Component {
       confirmationVisible: false,
       confirmationId: null
     });
-}
+  }
+
+
 onCancelDelete = () => {
   this.setState({
     confirmationVisible: false,
@@ -187,32 +192,14 @@ onCancelDelete = () => {
 }
 
 
+
+
+
+
   render() {
     const { confirmationVisible } = this.state;
 
     return (
-      // <div className="App">
-
-      //     <Link to ='/addDataMaster' >
-      //       <CButton className="mb-3" type="submit" color="primary">[+] Add Data Bank Master</CButton>
-      //     </Link><br />
-      //     {/* <label><strong>Data Bank Master</strong></label> */}
-      //   <div>
-      //     <br />
-      //   </div>
-      //   {/* <br /> */}
-
-      //   <div>
-      //     {/* <ListBankMaster
-      //       listBankMaster={this.state.listBankMaster}
-      //       handlePageChange={this.handlePageChange}
-      //       handlePerRowsChange={this.handlePerRowsChange}
-      //       countPerPage={this.state.size}
-      //       total_data={this.state.totalData}
-      //     /> */}
-      //     <br /><br />
-      //   </div>
-      // </div>
 
       <Card>
           <Link to='/bnkadm/bankMaster/inputBankMaster'>
@@ -239,6 +226,7 @@ onCancelDelete = () => {
                             }
                         }/>
                         </Link>
+
                     <Button icon="pi pi-trash" severity="danger" className="p-button-rounded p-button-text"
                             onClick={(e) => {
                                 console.log("row idx: " + data.norek);

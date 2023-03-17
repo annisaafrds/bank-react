@@ -6,6 +6,8 @@ import { Button } from 'primereact/button';
 import { Link, useParams } from "react-router-dom";
 import { url } from '../../../Constanta';
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
+import cekLogin from "../../cekLogin/cekLogin"
+
 
 class TransaksiTelkom extends Component {
 
@@ -126,6 +128,8 @@ class TransaksiTelkom extends Component {
   }
 
   render() {
+    let logincek=new cekLogin()
+logincek.loginCek();
       const { confirmationVisible } = this.state;
       return (
         <>
