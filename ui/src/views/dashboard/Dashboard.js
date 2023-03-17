@@ -21,8 +21,9 @@ const Dashboard = () => {
       <div className="grid grid-nogutter surface-0 text-800">
         <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
           <section>
+            <span className="block text-6xl font-bold mb-1 text-left">Hai <b>{localStorage.getItem("nama")}</b></span>
             <span className="block text-6xl font-bold mb-1">Welcome to <span className="text-6xl text-primary font-bold mb-3">Bank Ogya</span></span>
-            <p className="mt-0 mb-4 text-700 line-height-3">Hai <b>{localStorage.getItem("nama")}</b> <br/> ROLE anda: Admin All Role<br/><b>
+            {/* <p className="mt-0 mb-4 text-700 line-height-3">Hai <b>{localStorage.getItem("nama")}</b> <br/> ROLE anda: Admin All Role<br/><b>
 
             {hakaksess.map((hakakses, i) => (
             <>
@@ -33,7 +34,7 @@ const Dashboard = () => {
             ))
             }
 
-              </b></p>
+              </b></p> */}
           </section>
         </div>
         <div className="col-12 md:col-6 overflow-hidden">
