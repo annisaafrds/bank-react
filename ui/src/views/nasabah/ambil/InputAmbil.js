@@ -19,14 +19,12 @@ class InputAmbil extends Component {
       isEdit: false,
       showConfirmation: false,
     };
-    console.log(window.location.href.slice(50))
   }
 
-  async getDataById(id) {
-    console.log(window.location.href.slice(62))
+  async getDataById() {
     const value = window.location.href.slice(62);
     if (value != '') {
-      fetch(`${url}/api/mst-bank/getByNorek?value=${value}`)
+      await fetch(`${url}/api/mst-bank/getByNorek?value=${value}`)
         .then((response) => response.json())
         .then((data) => {
           const { norek, nama, noTelp, alamat, saldo } = data.rows[0];
@@ -51,10 +49,7 @@ class InputAmbil extends Component {
     }
   }
 
-  async componentDidMount(id) {
-    // const { idPelanggan } = this.props;
-    // console.log(this.props.pelanggan);
-    // console.log(idPelanggan);
+  async componentDidMount() {
     const { location } = this.props;
     console.log(location)
     if (location && location.data) {
@@ -69,9 +64,8 @@ class InputAmbil extends Component {
         isEdit: true,
       });
     }
-    // let id = location.data;
-    // this.getDataById(id);
-    this.getDataById(window.location.href.slice(62));
+    console.log(this.state.saldo);
+    await this.getDataById(window.location.href.slice(62));
   }
 
   handleInputChange = (event) => {
@@ -89,10 +83,10 @@ class InputAmbil extends Component {
     const { norek, nama, noTelp, alamat, saldo } = this.state;
 
     // Check if all required fields are filled in
-    if (!norek || !nama || !noTelp || !alamat || !saldo) {
-      alert("Please fill in all required fields");
-      return;
-    }
+    // if (!norek || !nama || !noTelp || !alamat || !saldo) {
+    //   alert("Please fill in all required fields");
+    //   return;
+    // }
 
     const edit =  `${url}/api/mst-bank/update/`
 
@@ -125,23 +119,20 @@ class InputAmbil extends Component {
   };
 
   render() {
-    const { norek, nama, noTelp, alamat, saldo, isEdit, showConfirmation  } = this.state;
-    const buttonText = isEdit ? "Simpan" : "Tambah";
+    const { norek, nama, noTelp, alamat, saldo, showConfirmation  } = this.state;
+    const buttonText = "Simpan";
+
+    const formatter = new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR'
+    });
+
+    const saldoRp = formatter.format(saldo);
 
     return (
       <>
       <Card>
-        <div className="grid">
-              <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="nama">Saldo saat ini : </label>
-              <InputText
-                id="nama"
-                name="nama"
-                value={nama}
-                required
-                type="text"
-                className="col-11 md:col-10"
-                disabled />
-          </div>
+       <div>Saldo saat ini: {saldoRp}</div>
         <form onSubmit={this.handleSubmit}>
           <div className="grid hidden">
             <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="idPelanggan">ID <span style={{ color: 'red' }}>*</span></label>
@@ -198,7 +189,7 @@ class InputAmbil extends Component {
               disabled />
           </div>
           <div className="grid">
-            <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="alamat">Saldo</label>
+            <label className="col-1 mb-2 md:col-2 md:mb-0" htmlFor="alamat">Ambil Saldo</label>
             {/* <InputTextarea value={alamat} onChange={this.handleInputChange} rows={5} cols={30} autoResize className="col-11 md:col-10" /> */}
             <InputText
               id="saldo"
@@ -213,7 +204,7 @@ class InputAmbil extends Component {
 
           <div className="flex mt-4 justify-content-end">
             <Button className="flex button-save" label={buttonText} type="submit" />
-            <Link to='/nsbh/ambil/'>
+            <Link to='/nsbh/ambil'>
               <Button className="flex button-save ml-3" severity="secondary" label="Kembali" />
             </Link>
           </div>

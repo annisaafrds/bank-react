@@ -138,7 +138,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Ambil Tunai',
-    to: '/nasabah/ambil/',
+    to: '/nasabah/ambil',
     icon: <CIcon icon={cilArrowTop} customClassName="nav-icon" />,
   },
   {

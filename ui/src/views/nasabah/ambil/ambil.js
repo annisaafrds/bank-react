@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { url } from '../../../Constanta';
-import ListAmbil from './ListAmbil';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Card } from 'primereact/card';
