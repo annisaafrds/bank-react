@@ -311,7 +311,7 @@ class trnasabah extends Component {
 
     return (
       <div className="App">
-        <label><strong>Data Transaksi Nasabah</strong></label><br />
+        <label><strong>Data Transaksi Nasabah</strong></label>
         <div>
           <Link to='/bnkadm/trksinasabah/InputNasabah'>
             <Button className='mb-2' label="Tambah Nasabah" icon="pi pi-plus" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} />
@@ -328,7 +328,6 @@ class trnasabah extends Component {
             addListNasabah={this.addListNasabah}>
             <Button className='mb-2' label="Tambah Pelanggan" icon="pi pi-plus" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} />
           </Link> */}
-          <br />
           {/* <SearchEmployee
             handleInputSearch={this.handleInputSearch}
             handleSubmitSearch={this.handleSubmitSearch}
@@ -349,19 +348,19 @@ class trnasabah extends Component {
           />
           <br /><br />
         </div>
-        <div class="col-2">
-          <h6>**Keterangan</h6>
-          <ul>
-            <li>1 : Setor</li>
-            <li>2 : Tarik</li>
-          </ul>
-        </div>
-        <div class="col-2">
-          <ul>
-            <li>3 : Transfer</li>
-            <li>4 : Bayar Telepon</li>
-          </ul>
-        </div>
+
+        <h6>*Status :</h6>
+        <ul>
+          <li>D (Debet) : Uang Masuk </li>
+          <li>K (Kredit) : Uang Kenuar</li>
+        </ul>
+        <h6>**Keterangan</h6>
+        <ul>
+          <li>1 : Setor</li>
+          <li>2 : Tarik</li>
+          <li>3 : Transfer</li>
+          <li>4 : Bayar Telepon</li>
+        </ul>
       </div>
     );
   }

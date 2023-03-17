@@ -34,10 +34,10 @@ class ListTrnasabah extends Component {
                 name: "Status",
                 selector: "status",
             },
-            {
-                name: "No Tlp",
-                selector: "noTelp",
-            },
+            // {
+            //     name: "No Tlp",
+            //     selector: "noTelp",
+            // },
             {
                 name: "Saldo",
                 selector: "uang",
