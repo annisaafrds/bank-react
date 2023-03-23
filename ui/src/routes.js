@@ -1,5 +1,6 @@
 import React from 'react'
 const Login = React.lazy(() => import('./views/pages/login/Login'))
+const Logout = React.lazy(() => import('./views/logout'))
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const MstPlg = React.lazy(() => import('./views/tlpadm/mst_plg/mst_plg'))
 const InputPelanggan = React.lazy(() => import('./views/tlpadm/mst_plg/InputPelanggan'))
@@ -26,6 +27,7 @@ const InputNasabah = React.lazy(() => import('./views/bnkadm/trksinasabah/InputN
 const routes = [
   { path: '/', exact: true, name: 'Home', element: Dashboard },
   { path: '/login', exact: true, name: 'Login', element: Login },
+  { path: '/logout', exact: true, name: 'Logout', element: Logout },
   { path: '/nsbh/setor', name: 'Setor Tunai', element: Setor },
   { path: '/nsbh/cek', name: 'Cek Saldo', element: Cek },
   { path: '/nsbh/ambil', name: 'Ambil Tunai', element: Ambil },

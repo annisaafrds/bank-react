@@ -2,6 +2,7 @@ import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
   cilLockLocked,
+  cilAccountLogout,
   cilUser,
   cilListRich,
   cilBank,
@@ -19,6 +20,12 @@ import {
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
+  {
+    component: CNavItem,
+    name: 'Logout',
+    to: '/logout',
+    icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,
+  },
   {
     component: CNavTitle,
     name: 'USER ADM',
