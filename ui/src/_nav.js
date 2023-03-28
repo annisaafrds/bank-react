@@ -1,6 +1,6 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import {
+/*import {
   cilLockLocked,
   cilAccountLogout,
   cilUser,
@@ -17,6 +17,8 @@ import {
   cilMenu,
   cilSpreadsheet,
 } from '@coreui/icons'
+*/
+import *   as icon from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 function GetSortOrder(prop) {    
   return function(a, b) {    
@@ -27,7 +29,8 @@ function GetSortOrder(prop) {
       }    
       return 0;    
   }    
-}    
+}
+/*
 const funcIcon=(strIcon)=>
 {
   //console.log(cilAccountLogout)
@@ -74,9 +77,13 @@ case "cilSpreadsheet":
 
 
 }
-//funcIcon("cilAccountLogout");
+*/
 let hakaksess=[];
 let role=[];
+let a1=123;
+let icon1=icon
+//alert(eval("icon1.cilAccountLogout"))
+//cilAccountLogout1=eval("cilAccountLogout")
 if(localStorage['hakakses'])
 {
   var _nav = [
@@ -84,7 +91,7 @@ if(localStorage['hakakses'])
       component: CNavItem,
       name: 'Logout',
       to: '/logout',
-      icon: <><CIcon icon={funcIcon("cilAccountLogout")} customClassName="nav-icon" /></>,
+      icon: <><CIcon icon={icon1.cilAccountLogout} customClassName="nav-icon" /></>,
     }
   ]
   
@@ -109,7 +116,7 @@ if(localStorage['hakakses'])
             component: CNavGroup,
             name: ROLE_MENU.MENU.program_name,
             to: ROLE_MENU.MENU.program_name,
-            icon: <CIcon icon={funcIcon(ROLE_MENU.MENU.icon)} customClassName="nav-icon" />,
+            icon: <CIcon icon={eval("icon1."+ROLE_MENU.MENU.icon)} customClassName="nav-icon" />,
             items: [
               {
                 component: CNavItem,
@@ -143,7 +150,7 @@ if(localStorage['hakakses'])
             component: CNavItem,
             name: ROLE_MENU.MENU.program_name,
             to: ROLE_MENU.MENU.url,
-            icon: <CIcon icon={funcIcon(ROLE_MENU.MENU.icon)} customClassName="nav-icon" />,
+            icon: <CIcon icon={eval("icon1."+ROLE_MENU.MENU.icon)} customClassName="nav-icon" />,
           });
 
       }
