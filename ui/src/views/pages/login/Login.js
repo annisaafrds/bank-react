@@ -54,7 +54,7 @@ const Login = () => {
       )
       .then(json => {
         //acountBank,
-        console.log("json", json.data.count)
+        console.log("json", json)
         // alert('qweqwe')
         if (json.data.count > 0) {
           json.data.rows.map((row) => {

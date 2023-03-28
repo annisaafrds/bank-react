@@ -64,7 +64,7 @@ const roles_menuDB = sequelize.define("ROLES_MENU", {
  })
  roles_menuDB.associate = function(models) {
     roles_menuDB.hasMany(models.rolesDB, {foreignKey: 'role_id',sourceKey: 'role_id'})
-    roles_menuDB.hasMany(models.menusDB, {foreignKey: 'menu_id',sourceKey: 'menu_id'})
+    roles_menuDB.hasOne(models.menusDB, {foreignKey: 'menu_id',sourceKey: 'menu_id'})
     //hakaksessDB.belongsToMany(rolesDBrolesDB, {foreignKey: 'role_id',sourceKey: 'role_id'})
 };
   return roles_menuDB

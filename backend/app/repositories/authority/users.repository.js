@@ -32,10 +32,10 @@ function usersRepository(db) {
                                         include: [
                                             {
                                                 //through:{
-                                                attributes:['menu_id','nama','icon','url'//'KODEATASAN',//'MANAGERNAME'
+                                                attributes:['menu_id','nama','icon','url','program_name'//'KODEATASAN',//'MANAGERNAME'
                                                 ],//},//},
                                                 model: db.menusDB,
-                                               as:'MENUs', 
+                                               as:'MENU', 
                                                required:false,
                                     
                                                //where : {EMPNO : 20 },
